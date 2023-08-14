@@ -1,0 +1,27 @@
+.playlistSong::-webkit-scrollbar {
+    display: none;
+}
+
+.premium {
+    width: calc(100% - 216px);
+}
+
+.notPremium {
+    width: calc(100% - 147px);
+}
+
+.premiumChart {
+    width: calc(92% - 216px);
+}
+
+.notPremiumChart {
+    width: calc(92% - 147px);
+}
+
+.premiumWeek {
+    width: calc(90% - 216px);
+}
+
+.notPremiumWeek {
+    width: calc(90% - 147px);
+}
