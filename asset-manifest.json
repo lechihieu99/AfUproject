@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/lechihieu99/AfUproject/static/css/main.d967f91f.css",
+    "main.js": "/lechihieu99/AfUproject/static/js/main.5e58aab7.js",
+    "static/js/787.25d88e57.chunk.js": "/lechihieu99/AfUproject/static/js/787.25d88e57.chunk.js",
+    "static/media/slide3.png": "/lechihieu99/AfUproject/static/media/slide3.a82f7aba5911a49f1e20.png",
+    "static/media/slide2.png": "/lechihieu99/AfUproject/static/media/slide2.f5878552df7e61655434.png",
+    "static/media/slide33.png": "/lechihieu99/AfUproject/static/media/slide33.35ad9f44b29ed9df28a5.png",
+    "static/media/slide1.png": "/lechihieu99/AfUproject/static/media/slide1.d90cf40373742e5f0560.png",
+    "static/media/login_background.jpg": "/lechihieu99/AfUproject/static/media/login_background.3b63f59d4bad1e0477c1.jpg",
+    "static/media/slide4.png": "/lechihieu99/AfUproject/static/media/slide4.dcf2f68e55826f6f3731.png",
+    "static/media/text_background.jpg": "/lechihieu99/AfUproject/static/media/text_background.18065e679ff1afd7ad0f.jpg",
+    "index.html": "/lechihieu99/AfUproject/index.html",
+    "main.d967f91f.css.map": "/lechihieu99/AfUproject/static/css/main.d967f91f.css.map",
+    "main.5e58aab7.js.map": "/lechihieu99/AfUproject/static/js/main.5e58aab7.js.map",
+    "787.25d88e57.chunk.js.map": "/lechihieu99/AfUproject/static/js/787.25d88e57.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d967f91f.css",
+    "static/js/main.5e58aab7.js"
+  ]
+}
