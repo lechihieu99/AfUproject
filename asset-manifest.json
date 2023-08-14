@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/AfUproject/static/css/main.96280fda.css",
-    "main.js": "/AfUproject/static/js/main.e70f0788.js",
-    "static/js/787.25d88e57.chunk.js": "/AfUproject/static/js/787.25d88e57.chunk.js",
-    "static/media/slide3.png": "/AfUproject/static/media/slide3.a82f7aba5911a49f1e20.png",
-    "static/media/slide2.png": "/AfUproject/static/media/slide2.f5878552df7e61655434.png",
-    "static/media/slide33.png": "/AfUproject/static/media/slide33.35ad9f44b29ed9df28a5.png",
-    "static/media/slide1.png": "/AfUproject/static/media/slide1.d90cf40373742e5f0560.png",
-    "static/media/login_background.jpg": "/AfUproject/static/media/login_background.3b63f59d4bad1e0477c1.jpg",
-    "static/media/slide4.png": "/AfUproject/static/media/slide4.dcf2f68e55826f6f3731.png",
-    "static/media/text_background.jpg": "/AfUproject/static/media/text_background.18065e679ff1afd7ad0f.jpg",
-    "index.html": "/AfUproject/index.html",
-    "main.96280fda.css.map": "/AfUproject/static/css/main.96280fda.css.map",
-    "main.e70f0788.js.map": "/AfUproject/static/js/main.e70f0788.js.map",
-    "787.25d88e57.chunk.js.map": "/AfUproject/static/js/787.25d88e57.chunk.js.map"
+    "main.css": "/afuproject/static/css/main.8a057cb7.css",
+    "main.js": "/afuproject/static/js/main.43930d16.js",
+    "static/js/787.25d88e57.chunk.js": "/afuproject/static/js/787.25d88e57.chunk.js",
+    "static/media/slide3.png": "/afuproject/static/media/slide3.a82f7aba5911a49f1e20.png",
+    "static/media/slide2.png": "/afuproject/static/media/slide2.f5878552df7e61655434.png",
+    "static/media/slide33.png": "/afuproject/static/media/slide33.35ad9f44b29ed9df28a5.png",
+    "static/media/slide1.png": "/afuproject/static/media/slide1.d90cf40373742e5f0560.png",
+    "static/media/login_background.jpg": "/afuproject/static/media/login_background.3b63f59d4bad1e0477c1.jpg",
+    "static/media/slide4.png": "/afuproject/static/media/slide4.dcf2f68e55826f6f3731.png",
+    "static/media/text_background.jpg": "/afuproject/static/media/text_background.18065e679ff1afd7ad0f.jpg",
+    "index.html": "/afuproject/index.html",
+    "main.8a057cb7.css.map": "/afuproject/static/css/main.8a057cb7.css.map",
+    "main.43930d16.js.map": "/afuproject/static/js/main.43930d16.js.map",
+    "787.25d88e57.chunk.js.map": "/afuproject/static/js/787.25d88e57.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.96280fda.css",
-    "static/js/main.e70f0788.js"
+    "static/css/main.8a057cb7.css",
+    "static/js/main.43930d16.js"
   ]
 }
