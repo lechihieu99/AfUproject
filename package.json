@@ -2,7 +2,7 @@
   "name": "entertain-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://lechihieu99.github.io/afuproject/",
+  "homepage": "https://lechihieu99.github.io/afuproject/#",
   "dependencies": {
     "@phosphor-icons/react": "^2.0.10",
     "@reduxjs/toolkit": "^1.9.5",
