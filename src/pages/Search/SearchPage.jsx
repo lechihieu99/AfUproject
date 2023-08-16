@@ -53,10 +53,6 @@ const SearchPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, sele
     //     setArrayIdx(arr)
     // }, [search?.data?.data?.songs, favouriteList])
 
-    useEffect(() => {
-        console.log(search)
-    }, [search])
-
     return (
         <>
             <div className="w-full h-full flex gap-4">
@@ -69,7 +65,7 @@ const SearchPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, sele
                         <div className="w-full pt-4">
                             <div className="w-full text-xl font-bold text-gray-200 mb-2">Kết quả tìm kiếm hàng đầu</div>
                             {search?.data?.data?.top?.objectType === 'song' && (
-                                <Link to={`/music/track/${search?.data?.data?.top?.encodeId}`} className="w-full">
+                                <Link to={`/afuproject/music/track/${search?.data?.data?.top?.encodeId}`} className="w-full">
                                     <div className={`w-full flex hover:bg-greyblue`}>
                                         <div className="w-20 h-20 m-2" style={{ backgroundImage: `url(${search?.data?.data?.top?.thumbnail})`, backgroundSize: 'cover' }}></div>
                                         <div className="w-[60%] flex flex-col pl-2 justify-center">
@@ -109,7 +105,7 @@ const SearchPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, sele
                                 <div className="w-full h-fit pb-2 overflow-x-auto playlistSearch">
                                     <div className="flex items-start gap-4">
                                         {search?.data?.data?.playlists?.map((item) => (
-                                            <Link to={`/music/playlist/${item.encodeId}`} className="w-32 hover:brightness-125">
+                                            <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-32 hover:brightness-125">
                                                 <div className="w-28 h-28 xl:w-32 xl:h-32" style={{ backgroundImage: `url(${item.thumbnailM})`, backgroundSize: 'cover' }}></div>
                                                 <div className="w-full text-gray-200 text-center">{item.title}</div>
                                                 <div className="w-full text-sm text-gray-400 text-center">{item.artistsNames}</div>
@@ -120,7 +116,7 @@ const SearchPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, sele
                                 <div className="w-full text-base font-bold text-gray-200 mt-2">{search && "Các bài hát phổ biến"}</div>
                                 <div className="w-full flex flex-col pb-2">
                                     {search?.data?.data?.songs?.map((item, idx) => (
-                                        <Link to={`/music/track/${item.encodeId}`} className="w-full">
+                                        <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full">
                                             <div className={`w-full flex hover:bg-greyblue`}>
                                                 <div className="w-14 h-14 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                                 <div className="flex flex-col pl-2 justify-center" id="infoSong">

@@ -9,19 +9,19 @@ const menu = [
         id: 0,
         icon: <HouseLine size={window.innerWidth <= 1024 ? 20 : 28} weight="fill" />,
         title: 'Home',
-        link: '/'
+        link: '/afuproject'
     },
     {
         id: 1,
         icon: <GameController size={window.innerWidth <= 1024 ? 20 : 28} weight='fill' />,
         title: 'Games',
-        link: '/games'
+        link: '/afuproject/games'
     },
     {
         id: 2,
         icon: <Guitar size={window.innerWidth <= 1024 ? 20 : 28} weight="fill" />,
         title: 'Music Space',
-        link: '/music'
+        link: '/afuproject/music'
     },
 ]
 
@@ -35,7 +35,7 @@ const Sidebar = ({ setLocation, setSelectedId, setIsPlaying }) => {
         Cookies.remove('tokenId');
         setSelectedId()
         setIsPlaying(false)
-        navigate({ pathname: '/login' })
+        navigate({ pathname: '/afuproject/login' })
     }
     return (
         <div className={`${hover ? 'w-full xl:w-72 sm:w-56' : 'w-full xl:w-20 sm:w-14'} h-16 sm:h-screen bg-blue-velvet absolute left-0 bottom-0 sm:top-0 z-50`}

@@ -59,7 +59,7 @@ const CurrentPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, sel
                 <div className="w-[70%] h-full bg-black-200 pt-4 px-6 rounded-sm overflow-y-auto">
                     <div className="w-full flex justify-center items-start gap-2 pb-2 border-b-2 border-white-200">
                         <div className="text-2xl w-1/2 text-gray-200">
-                            <Link to="/music">
+                            <Link to="/afuproject/music">
                                 Music Space
                             </Link>
 

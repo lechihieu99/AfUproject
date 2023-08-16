@@ -51,7 +51,7 @@ const Search = ({ isPlaying, setIsPlaying, playingList, setPlayingList }) => {
 
                 // 👇️ your logic here
                 dispatch(searchSongPage({ key: document.getElementById("default-search")?.value }))
-                navigate({ pathname: `/music/search/${document.getElementById("default-search")?.value}` })
+                navigate({ pathname: `/afuproject/music/search/${document.getElementById("default-search")?.value}` })
             }
         };
 
@@ -87,7 +87,7 @@ const Search = ({ isPlaying, setIsPlaying, playingList, setPlayingList }) => {
                     </button>
                 ) : (
                     <button className="text-white absolute right-0 bottom-[1px] bg-blue-velvet hover:bg-greyblue  font-medium rounded-r-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                        onClick={() => dispatch(searchSongPage({ key: document.getElementById("default-search")?.value })) && navigate({ pathname: `/music/search/${document.getElementById("default-search")?.value}` })}
+                        onClick={() => dispatch(searchSongPage({ key: document.getElementById("default-search")?.value })) && navigate({ pathname: `/afuproject/music/search/${document.getElementById("default-search")?.value}` })}
                     >
                         Tìm
                     </button>
@@ -98,7 +98,7 @@ const Search = ({ isPlaying, setIsPlaying, playingList, setPlayingList }) => {
                 >
                     <div className="bg-blue-velvet flex flex-col p-2" >
                         {searchList?.data?.data?.songs?.map((item, idx) => (
-                            <Link to={`/music/track/${item.encodeId}`} className="w-full" onClick={() => setIsFocus(false)} >
+                            <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full" onClick={() => setIsFocus(false)} >
                                 <div key={idx} className={`w-full flex hover:bg-greyblue`}>
                                     <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                     <div className="w-[60%] flex flex-col pl-2 justify-center">

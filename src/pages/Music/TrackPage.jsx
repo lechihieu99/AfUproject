@@ -39,14 +39,14 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
     }, [statusFav, statusRemove])
 
     useEffect(() => {
-        dispatch(getInfoSong({ id: location?.pathname?.slice(13) }))
-        dispatch(getLyricsSong({ id: location?.pathname?.slice(13) }))
-    }, [location?.pathname?.slice(13)])
+        dispatch(getInfoSong({ id: location?.pathname?.slice(24) }))
+        dispatch(getLyricsSong({ id: location?.pathname?.slice(24) }))
+    }, [location?.pathname?.slice(24)])
 
     useEffect(() => {
         dispatch(searchRecommendSong({ key: infoSong?.data?.data?.title }))
         infoSong?.data?.data?.artistsNames && dispatch(searchByArtist({ key: infoSong?.data?.data?.artistsNames }))
-    }, [infoSong, infoSong?.data?.data?.artistsNames, location?.pathname?.slice(13)])
+    }, [infoSong, infoSong?.data?.data?.artistsNames, location?.pathname?.slice(24)])
 
     useEffect(() => {
         if (array) {
@@ -71,11 +71,11 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
     useEffect(() => {
         let arr = []
         favouriteList?.data?.map((item2) => {
-            location?.pathname?.slice(13) === item2.encodeId && arr.push(location?.pathname?.slice(13))
+            location?.pathname?.slice(24) === item2.encodeId && arr.push(location?.pathname?.slice(24))
         })
 
         setArrayIdx(arr)
-    }, [location?.pathname?.slice(13), favouriteList])
+    }, [location?.pathname?.slice(24), favouriteList])
 
     useEffect(() => {
         console.log(lyricsSong)
@@ -112,10 +112,10 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                 <div className="w-12 hidden sm:flex h-full flex justify-right items-end gap-4">
                                     <div className="p-2 border-[1px] border-gray-200 text-gray-200 rounded-full">
 
-                                        {arrayIdx?.includes(location?.pathname?.slice(13)) ? (
+                                        {arrayIdx?.includes(location?.pathname?.slice(24)) ? (
                                             <Heart size={window.innerWidth <= 1024 ? 24 : 32} weight="fill" className="cursor-pointer text-pink-velvet" onClick={() => dispatch(removeFavouriteList({
                                                 userId: token,
-                                                encodeId: location?.pathname?.slice(13)
+                                                encodeId: location?.pathname?.slice(24)
                                             }))} />
                                         ) : (
                                             <Heart size={window.innerWidth <= 1024 ? 24 : 32} weight="fill" className="cursor-pointer" onClick={() => dispatch(addFavouriteList({
@@ -123,7 +123,7 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                                 artist: infoSong?.data?.data?.artistsNames,
                                                 image: infoSong?.data?.data?.thumbnailM ? infoSong?.data?.data?.thumbnailM : infoSong?.data?.data?.thumbnail,
                                                 userId: token,
-                                                encodeId: location?.pathname?.slice(13)
+                                                encodeId: location?.pathname?.slice(24)
                                             }))} />
 
                                         )}
@@ -133,8 +133,8 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                 <div className="w-12 hidden sm:flex h-full flex justify-right items-end gap-4">
                                     <div className="p-2 border-[1px] border-gray-200 text-gray-200 rounded-full">
 
-                                        {isPlaying && selectedId === location?.pathname?.slice(13) ? <Pause size={window.innerWidth <= 1024 ? 24 : 32} weight="fill" className="cursor-pointer" onClick={() => setIsPlaying(!isPlaying)} /> :
-                                            selectedId === location?.pathname?.slice(13) ?
+                                        {isPlaying && selectedId === location?.pathname?.slice(24) ? <Pause size={window.innerWidth <= 1024 ? 24 : 32} weight="fill" className="cursor-pointer" onClick={() => setIsPlaying(!isPlaying)} /> :
+                                            selectedId === location?.pathname?.slice(24) ?
                                                 <Play size={window.innerWidth <= 1024 ? 24 : 32} weight="fill" className="cursor-pointer" onClick={() => setIsPlaying(!isPlaying)} />
                                                 :
                                                 <Play size={window.innerWidth <= 1024 ? 24 : 32} weight="fill" className="cursor-pointer" onClick={() => setArray(infoSong?.data?.data)} />
@@ -147,10 +147,10 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                             <div className="w-full sm:hidden mt-20 flex gap-4">
                                 <div className="p-2 border-[1px] border-gray-200 text-gray-200 rounded-full">
 
-                                    {arrayIdx?.includes(location?.pathname?.slice(13)) ? (
+                                    {arrayIdx?.includes(location?.pathname?.slice(24)) ? (
                                         <Heart size={window.innerWidth <= 1024 ? 24 : 32} weight="fill" className="cursor-pointer text-pink-velvet" onClick={() => dispatch(removeFavouriteList({
                                             userId: token,
-                                            encodeId: location?.pathname?.slice(13)
+                                            encodeId: location?.pathname?.slice(24)
                                         }))} />
                                     ) : (
                                         <Heart size={window.innerWidth <= 1024 ? 24 : 32} weight="fill" className="cursor-pointer" onClick={() => dispatch(addFavouriteList({
@@ -158,15 +158,15 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                             artist: infoSong?.data?.data?.artistsNames,
                                             image: infoSong?.data?.data?.thumbnailM ? infoSong?.data?.data?.thumbnailM : infoSong?.data?.data?.thumbnail,
                                             userId: token,
-                                            encodeId: location?.pathname?.slice(13)
+                                            encodeId: location?.pathname?.slice(24)
                                         }))} />
 
                                     )}
                                 </div>
                                 <div className="p-2 border-[1px] border-gray-200 text-gray-200 rounded-full">
 
-                                    {isPlaying && selectedId === location?.pathname?.slice(13) ? <Pause size={window.innerWidth <= 1024 ? 24 : 32} weight="fill" className="cursor-pointer" onClick={() => setIsPlaying(!isPlaying)} /> :
-                                        selectedId === location?.pathname?.slice(13) ?
+                                    {isPlaying && selectedId === location?.pathname?.slice(24) ? <Pause size={window.innerWidth <= 1024 ? 24 : 32} weight="fill" className="cursor-pointer" onClick={() => setIsPlaying(!isPlaying)} /> :
+                                        selectedId === location?.pathname?.slice(24) ?
                                             <Play size={window.innerWidth <= 1024 ? 24 : 32} weight="fill" className="cursor-pointer" onClick={() => setIsPlaying(!isPlaying)} />
                                             :
                                             <Play size={window.innerWidth <= 1024 ? 24 : 32} weight="fill" className="cursor-pointer" onClick={() => setArray(infoSong?.data?.data)} />

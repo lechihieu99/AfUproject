@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Carousel } from "flowbite-react";
+import { Carousel, Modal } from "flowbite-react";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -9,7 +9,7 @@ import ModalSignIn from "../../components/modalSignUp/ModalSignUp";
 import { images } from "../../constants/GetImages";
 import { API_HOST } from "../../constants/Pathname";
 import { loginAccount, signinAccount } from "../../redux/slice/Auth.slice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import './style.css'
 import Cookies from "js-cookie";
 
@@ -33,6 +33,12 @@ const Login = ({ setSelectedId, setIsPlaying }) => {
     const [type, setType] = useState('login')
 
     const [check, setCheck] = useState(false)
+
+    const [show, setShow] = useState(false)
+
+    useEffect(() => {
+        setShow(true)
+    }, [])
 
     useEffect(() => {
         if (type === 'login') {
@@ -258,6 +264,20 @@ const Login = ({ setSelectedId, setIsPlaying }) => {
             {status === 'failed' && type === 'login' && (
                 <ModalLogin statusLogin={status} show={showLogin} setShow={setShowLogin} />
             )}
+
+            {/* {show && ( */}
+            <Modal show={show} onClose={() => setShow(false)}>
+                <Modal.Header>
+                    Warning
+                </Modal.Header>
+                <Modal.Body>
+                    <div>Vui lòng thực hiện các bước sau để trang web được hoạt động</div>
+                    <div>Bước 1: Truy cập đường link sau: <Link to="https://192.168.137.1:3114/api" target="_blank" className="cursor-pointer text-blue-200">Link</Link></div>
+                    <div>Bước 2: Chấp nhận kết nối: <span className="font-bold">Nâng cao (Advanced)</span> - <span className="font-bold">Tiếp tục truy cập (không an toàn)/Proceed to connection (unsafe)</span></div>
+                    <div>Bước 3: Khi nhận được thông báo chấp nhận, quay về trang web và tải lại trang</div>
+                </Modal.Body>
+            </Modal>
+            {/* )} */}
         </>
 
     )

@@ -31,7 +31,7 @@ const Games = () => {
                             url: item.url,
                             description: item.description,
                             userId: token
-                        })) && navigate({ pathname: `/games/${item.id}` })}>
+                        })) && navigate({ pathname: `/afuproject/games/${item.id}` })}>
                             <div className="w-full hover:bg-greyblue gap-4 p-2 flex justify-start items-center">
                                 <div className="w-20 h-20 lg:w-16 lg:h-16" style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'cover' }}></div>
                                 <div>

@@ -39,7 +39,7 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
         Cookies.remove('tokenId');
         setSelectedId()
         setIsPlaying(false)
-        navigate({ pathname: '/login' })
+        navigate({ pathname: '/afuproject/login' })
     }
 
     return (
@@ -93,7 +93,7 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
                         </div>
                         <div className="w-full overflow-y-auto" style={{ height: 'calc(100% - 41px)' }}>
                             {typeList === 'track' && currentList?.data?.map((item) => (
-                                <Link to={`/music/track/${item.encodeId}`} className="w-full" >
+                                <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full" >
                                     <div className={`w-full flex hover:bg-greyblue`}>
                                         <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                         <div className="flex flex-col pl-2 justify-center" style={{ width: 'calc(100% - 56px)' }}>
@@ -106,7 +106,7 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
                             ))}
 
                             {typeList === 'games' && currentGameList?.data?.map((item) => (
-                                <Link to={`/games/${item.id}`} className="w-full" >
+                                <Link to={`/afuproject/games/${item.id}`} className="w-full" >
                                     <div className={`w-full flex hover:bg-greyblue`}>
                                         <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'cover' }}></div>
                                         <div className="flex flex-col pl-2 justify-center" style={{ width: 'calc(100% - 56px)' }}>
@@ -125,7 +125,7 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
                         <Carousel>
                             {home?.data?.data?.items[0]?.items?.map((item) =>
                                 item.type === 1 ? (
-                                    <Link to={`/music/track/${item.encodeId}`} className="w-full">
+                                    <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full">
                                         <img
                                             alt="..."
                                             src={`${item.banner}`}
@@ -134,7 +134,7 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
                                     </Link>
                                 ) :
                                     item.type === 4 && (
-                                        <Link to={`/music/playlist/${item.encodeId}`} className="w-full">
+                                        <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full">
                                             <img
                                                 alt="..."
                                                 src={`${item.banner}`}

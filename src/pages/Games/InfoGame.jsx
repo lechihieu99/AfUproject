@@ -11,13 +11,8 @@ const InfoGame = () => {
     const game = useSelector((state) => state.game.game)
 
     useEffect(() => {
-        dispatch(getGame({ idGame: location?.pathname?.slice(7) }))
-    }, [location?.pathname?.slice(7)])
-
-    useEffect(() => {
-        console.log(location?.pathname?.slice(7))
-        console.log(game)
-    }, [game])
+        dispatch(getGame({ idGame: location?.pathname?.slice(18) }))
+    }, [location?.pathname?.slice(18)])
 
     return (
         <div className="w-full h-full bg-black-200 p-4">

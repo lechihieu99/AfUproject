@@ -26,9 +26,9 @@ const PlaylistPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, se
     const [list, setList] = useState()
 
     useEffect(() => {
-        dispatch(getPlaylist({ id: location?.pathname.slice(16) }))
+        dispatch(getPlaylist({ id: location?.pathname.slice(27) }))
         dispatch(getTop100())
-    }, [location?.pathname.slice(16)])
+    }, [location?.pathname.slice(27)])
 
     useEffect(() => {
         document.getElementById("lyricsScroll")?.scrollTo(0, 0);
@@ -48,7 +48,7 @@ const PlaylistPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, se
         let data = [];
         musicList?.data?.data?.map((item) => {
             item.genre.name === genre && item.items.map((item2) => {
-                item2.encodeId !== location?.pathname.slice(16) &&
+                item2.encodeId !== location?.pathname.slice(27) &&
                     data.push(item2)
             })
         })
@@ -61,7 +61,7 @@ const PlaylistPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, se
                 <div className="w-full lg:w-[70%] h-full pb-16 sm:pb-0 bg-black-200 pt-4 px-6 rounded-sm overflow-y-auto">
                     <div className="w-full flex justify-center items-start gap-2 pb-2 border-b-2 border-white-200">
                         <div className="text-xl sm:text-2xl w-1/2 text-gray-200">
-                            <Link to="/music">
+                            <Link to="/afuproject/music">
                                 Music Space
                             </Link>
 
@@ -71,7 +71,7 @@ const PlaylistPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, se
                     <div className="w-full text-3xl text-white flex justify-start items-center pb-2 gap-4" style={{ height: 'calc(100% - 50px)' }}>
                         <div className="hidden sm:flex w-1/3 h-full flex flex-col pt-4 ">
                             <div className="w-full lg:h-2/3 sm:h-1/2 overflow-y-auto">
-                                <div className="w-full h-1/2 lg:h-2/3" style={{ backgroundImage: `url(${playlist?.data?.encodeId === location?.pathname.slice(16) && playlist?.data?.thumbnailM})`, backgroundSize: 'cover' }}></div>
+                                <div className="w-full h-1/2 lg:h-2/3" style={{ backgroundImage: `url(${playlist?.data?.encodeId === location?.pathname.slice(27) && playlist?.data?.thumbnailM})`, backgroundSize: 'cover' }}></div>
                                 <div className="w-full pt-2 text-lg xl:text-xl font-semibold text-gray-200 text-center">{playlist?.data?.title}</div>
                                 <div className="w-full pt-2 text-xs xl:text-sm font-semibold text-gray-400 text-center">{playlist?.data?.artistsNames},...</div>
 
@@ -83,7 +83,7 @@ const PlaylistPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, se
                                         {list?.map((item) => (
                                             (
                                                 <div className="w-full cursor-pointer text-sm xl:text-base flex items-center text-gray-400 hover:text-gray-200"
-                                                    onClick={() => navigate({ pathname: `/music/playlist/${item.encodeId}` })}
+                                                    onClick={() => navigate({ pathname: `/afuproject/music/playlist/${item.encodeId}` })}
                                                 >
                                                     {item.title}
                                                 </div>
@@ -97,7 +97,7 @@ const PlaylistPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, se
                         <div className="w-full sm:w-2/3 h-full pt-2">
                             <div className="w-full h-[15%] overflow-y-auto text-gray-200 pb-2 border-b-[1px] border-white-200">
                                 <div className="text-xs">
-                                    <div className="sm:hidden h-16 w-16 m-auto" style={{ backgroundImage: `url(${playlist?.data?.encodeId === location?.pathname.slice(16) && playlist?.data?.thumbnailM})`, backgroundSize: 'cover' }}></div>
+                                    <div className="sm:hidden h-16 w-16 m-auto" style={{ backgroundImage: `url(${playlist?.data?.encodeId === location?.pathname.slice(27) && playlist?.data?.thumbnailM})`, backgroundSize: 'cover' }}></div>
                                     <div className="w-full sm:hidden pt-2 text-lg xl:text-xl font-semibold text-gray-200 text-center">{playlist?.data?.title}</div>
                                     <div className="w-full sm:hidden pt-2 text-xs xl:text-sm font-semibold text-gray-400 text-center">{playlist?.data?.artistsNames},...</div>
 

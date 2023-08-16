@@ -38,7 +38,7 @@ const TopPlaylist = () => {
             <div className={`relative w-full rounded-sm flex gap-4 p-4 mb-4 flex-wrap ${setList && "border-2 border-white-200"}`}>
                 {setList?.map((item) => (
                     <>
-                        <Link to={`/music/playlist/${item.encodeId}`} className="lg:w-24 lg:h-20 sm:w-20 sm:h-16">
+                        <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="lg:w-24 lg:h-20 sm:w-20 sm:h-16">
                             <div className=" w-20 h-16 lg:w-24 lg:h-20 rounded-sm overflow-hidden text-gray-200 border-[1px] border-white-200 flex justify-center items-center px-2 text-center" style={{ fontSize: '10px' }}
                             >
                                 {(item.title.slice(8)).slice(-(item.title.length), -9)}

@@ -40,7 +40,7 @@ const Router = () => {
         // if ((token === undefined) && location?.pathname !== '/login') {
         //     navigate({ pathname: '/' })
         // }
-        token && location?.pathname === '/' && navigate({ pathname: '/' })
+        token && location?.pathname === '/afuproject/' && navigate({ pathname: '/afuproject/' })
     }, [token, tokenSlice])
 
     useEffect(() => {
@@ -51,7 +51,7 @@ const Router = () => {
                 item: null
             })
             setIsPlaying(false)
-            navigate({ pathname: '/' })
+            navigate({ pathname: '/afuproject/' })
         }
     }, [status])
 
@@ -68,8 +68,8 @@ const Router = () => {
 
             {token === undefined ? (
                 <Routes>
-                    <Route path="" element={<Login setIsPlaying={setIsPlaying} setSelectedId={setSelectedId} />} />
-                    <Route path="login" element={<Login setIsPlaying={setIsPlaying} setSelectedId={setSelectedId} />} />
+                    <Route path="afuproject" element={<Login setIsPlaying={setIsPlaying} setSelectedId={setSelectedId} />} />
+                    <Route path="afuproject/login" element={<Login setIsPlaying={setIsPlaying} setSelectedId={setSelectedId} />} />
                     <Route path="*" element={<Login setIsPlaying={setIsPlaying} setSelectedId={setSelectedId} />} />
 
                 </Routes>
@@ -78,17 +78,17 @@ const Router = () => {
                 (
                     <Routes>
                         <Route path="">
-                            <Route path="" element={<Layout element={<Home selectedId={selectedId} setIsPlaying={setIsPlaying} setSelectedId={setSelectedId} />} isPlaying={isPlaying} setIsPlaying={setIsPlaying} setSelectedId={setSelectedId} />} />
+                            <Route path="afuproject" element={<Layout element={<Home selectedId={selectedId} setIsPlaying={setIsPlaying} setSelectedId={setSelectedId} />} isPlaying={isPlaying} setIsPlaying={setIsPlaying} setSelectedId={setSelectedId} />} />
                             {/* <Route path="/login" element={<Layout element={<Home selectedId={selectedId} />} isPlaying={isPlaying} setIsPlaying={setIsPlaying} setSelectedId={setSelectedId} />} /> */}
 
-                            <Route path="games" element={<Layout element={<Games />} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />} />
-                            <Route path="games/:id" element={<Layout element={<InfoGame />} />} />
-                            <Route path="music" element={<Layout element={<MusicPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
-                            <Route path="music/playlist/:id" element={<Layout element={<PlaylistPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
-                            <Route path="music/track/:id" element={<Layout element={<TrackPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
-                            <Route path="music/search/:id" element={<Layout element={<SearchPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
-                            <Route path="music/current/:id" element={<Layout element={<CurrentPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
-                            <Route path="music/favourite/:id" element={<Layout element={<FavouritePage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
+                            <Route path="afuproject/games" element={<Layout element={<Games />} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />} />
+                            <Route path="afuproject/games/:id" element={<Layout element={<InfoGame />} />} />
+                            <Route path="afuproject/music" element={<Layout element={<MusicPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
+                            <Route path="afuproject/music/playlist/:id" element={<Layout element={<PlaylistPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
+                            <Route path="afuproject/music/track/:id" element={<Layout element={<TrackPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
+                            <Route path="afuproject/music/search/:id" element={<Layout element={<SearchPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
+                            <Route path="afuproject/music/current/:id" element={<Layout element={<CurrentPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
+                            <Route path="afuproject/music/favourite/:id" element={<Layout element={<FavouritePage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
 
                         </Route>
                     </Routes>
