@@ -90,8 +90,8 @@ const Player = ({ isOpen, setIsOpen, isPlaying, setIsPlaying, playingList, setPl
     }, [playingList, favouriteList])
 
     useEffect(() => {
-        console.log(isOpen)
-    }, [isOpen])
+        console.log(selectedSong)
+    }, [selectedSong])
 
     useEffect(() => {
         /**
@@ -167,7 +167,7 @@ const Player = ({ isOpen, setIsOpen, isPlaying, setIsPlaying, playingList, setPl
         <>
             {token && selectedId && (
                 <>
-                    <audio className="hidden" id="myAudio" controls src={`${selectedSong}`} onEnded={isRepeatOnce ? repeatAudio : handleNextSong} >
+                    <audio className="" id="myAudio" controls src={`${selectedSong}`} onEnded={isRepeatOnce ? repeatAudio : handleNextSong} >
                     </audio>
                     {hover && (
                         <div className={`hidden sm:block w-full h-56 rounded-md bg-black p-2 overflow-y-auto`} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
