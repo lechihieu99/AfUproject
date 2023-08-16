@@ -6,16 +6,12 @@ import reportWebVitals from './reportWebVitals';
 
 import { store } from './redux/app/store';
 import { Provider } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <HashRouter>
-        <App />
-
-      </HashRouter>
+      <App />
     </Provider>
 
   </React.StrictMode>

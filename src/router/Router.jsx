@@ -2,7 +2,7 @@ import Cookies from "js-cookie";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { HashRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 
 import Layout from "../components/layout/Main";
 import Player from "../components/player/Player";
@@ -67,6 +67,7 @@ const Router = () => {
             )}
 
             {token === undefined ? (
+
                 <Routes>
                     <Route path="afuproject" element={<Login setIsPlaying={setIsPlaying} setSelectedId={setSelectedId} />} />
                     <Route path="afuproject/login" element={<Login setIsPlaying={setIsPlaying} setSelectedId={setSelectedId} />} />
