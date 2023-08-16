@@ -65,6 +65,7 @@ const Player = ({ isOpen, setIsOpen, isPlaying, setIsPlaying, playingList, setPl
     }, [playingList?.item?.encodeId])
 
     useEffect(() => {
+        console.log(song)
         if (song?.data?.data) {
             setSelectedSong(song?.data?.data[128])
         }
@@ -90,7 +91,10 @@ const Player = ({ isOpen, setIsOpen, isPlaying, setIsPlaying, playingList, setPl
     }, [playingList, favouriteList])
 
     useEffect(() => {
-        console.log(selectedSong)
+        if (selectedSong) {
+            const audioA = new Audio(selectedSong)
+            audioA?.play()
+        }
 
     }, [selectedSong])
 
