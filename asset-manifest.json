@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/afuproject/static/css/main.bd3f200f.css",
-    "main.js": "/afuproject/static/js/main.f16a382b.js",
+    "main.js": "/afuproject/static/js/main.72d733d7.js",
     "static/js/787.25d88e57.chunk.js": "/afuproject/static/js/787.25d88e57.chunk.js",
     "static/media/slide3.png": "/afuproject/static/media/slide3.a82f7aba5911a49f1e20.png",
     "static/media/slide2.png": "/afuproject/static/media/slide2.f5878552df7e61655434.png",
@@ -12,11 +12,11 @@
     "static/media/text_background.jpg": "/afuproject/static/media/text_background.18065e679ff1afd7ad0f.jpg",
     "index.html": "/afuproject/index.html",
     "main.bd3f200f.css.map": "/afuproject/static/css/main.bd3f200f.css.map",
-    "main.f16a382b.js.map": "/afuproject/static/js/main.f16a382b.js.map",
+    "main.72d733d7.js.map": "/afuproject/static/js/main.72d733d7.js.map",
     "787.25d88e57.chunk.js.map": "/afuproject/static/js/787.25d88e57.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.bd3f200f.css",
-    "static/js/main.f16a382b.js"
+    "static/js/main.72d733d7.js"
   ]
 }
