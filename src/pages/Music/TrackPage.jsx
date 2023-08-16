@@ -200,7 +200,7 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                 <div className="w-full h-8 text-base text-gray-200">Các bài hát liên quan</div>
                                 <div className="w-full mb-4 overflow-y-auto" style={{ height: 'calc(100% - 32px)' }}>
                                     {search?.data?.data?.songs?.map((item) => (
-                                        <Link to={`/music/track/${item.encodeId}`} className="w-full" >
+                                        <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full" >
                                             <div className={`w-full flex hover:bg-greyblue`}>
                                                 <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                                 <div className="w-[60%] xl:w-[75%] flex flex-col pl-2 justify-center">
@@ -224,7 +224,7 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                 <div className="w-full pb-2 overflow-y-auto" style={{ height: 'calc(100% - 32px)' }}>
 
                                     {searchArtist?.data?.data?.playlists?.map((item) => (
-                                        <Link to={`/music/playlist/${item.encodeId}`} className="w-full"  >
+                                        <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full"  >
                                             <div className={`w-full flex hover:bg-greyblue`}>
                                                 <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                                 <div className="flex w-[60%] xl:w-[75%] flex-col pl-2 justify-center">
@@ -244,7 +244,7 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                         <div className="w-full h-8 text-sm text-gray-200">Các bài hát liên quan</div>
                         <div className="w-full mb-4 overflow-y-auto" style={{ height: 'calc(100% - 32px)' }}>
                             {search?.data?.data?.songs?.map((item) => (
-                                <Link to={`/music/track/${item.encodeId}`} className="w-full" >
+                                <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full" >
                                     <div className={`w-full flex hover:bg-greyblue`}>
                                         <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                         <div className="w-[60%] xl:w-[75%] flex flex-col pl-2 justify-center">
@@ -268,7 +268,7 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                         <div className="w-full pb-2 overflow-y-auto" style={{ height: 'calc(100% - 32px)' }}>
 
                             {searchArtist?.data?.data?.playlists?.map((item) => (
-                                <Link to={`/music/playlist/${item.encodeId}`} className="w-full"  >
+                                <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full"  >
                                     <div className={`w-full flex hover:bg-greyblue`}>
                                         <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                         <div className="flex w-[60%] xl:w-[75%] flex-col pl-2 justify-center">
