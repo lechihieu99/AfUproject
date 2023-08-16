@@ -57,8 +57,12 @@ const SearchPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, sele
         <>
             <div className="w-full h-full flex gap-4">
                 <div className="lg:w-[70%] sm:w-full h-full pb-16 sm:pb-0 bg-black-200 pt-4 px-6 rounded-sm overflow-y-auto">
-                    <div className="w-full flex justify-center items-start gap-2 pb-2 border-b-2 border-white-200">
-                        <div className="text-sm sm:text-2xl w-1/2 text-gray-200">Music Space</div>
+                    <div className="w-full flex justify-center items-center gap-2 pb-2 border-b-2 border-white-200">
+                        <div className="text-base sm:text-2xl w-1/2 text-gray-200">
+                            <Link to="/afuproject/music">
+                                Music Space
+                            </Link>
+                        </div>
                         <Search isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} />
                     </div>
                     <div className="w-full overflow-y-auto playlistSong" style={{ height: 'calc(100% - 52px)' }}>

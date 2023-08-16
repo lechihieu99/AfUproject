@@ -79,11 +79,11 @@ const Search = ({ isPlaying, setIsPlaying, playingList, setPlayingList }) => {
                     onChange={handleSearch}
                     onFocus={() => document.getElementById("default-search")?.value !== '' ? setIsFocus(true) : setIsFocus(false)}
                     onBlur={() => setIsFocus(false)}
-                    className="block w-full p-2 pl-10 text-sm text-white placeholder:text-gray-200 border border-blue-velvet rounded-lg bg-white-200 focus:ring-greyblue " placeHolder="Search Song, Artist..." required />
+                    className="block w-full p-2 pl-10 text-sm text-white placeholder:text-gray-200 border border-blue-velvet rounded-lg bg-white-200 focus:ring-greyblue " placeHolder="Tên bài hát, ca sĩ,..." required />
                 {document.getElementById("default-search")?.value === '' || document.getElementById("default-search")?.value === null ? (
                     <button className="text-white absolute right-0 bottom-[1px] bg-gray-400  font-medium rounded-r-lg text-sm px-4 py-2" disabled
                     >
-                        Search
+                        Tìm
                     </button>
                 ) : (
                     <button className="text-white absolute right-0 bottom-[1px] bg-blue-velvet hover:bg-greyblue  font-medium rounded-r-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

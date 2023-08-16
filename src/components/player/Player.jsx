@@ -65,7 +65,6 @@ const Player = ({ isOpen, setIsOpen, isPlaying, setIsPlaying, playingList, setPl
     }, [playingList?.item?.encodeId])
 
     useEffect(() => {
-        console.log(song)
         if (song?.data?.data) {
             setSelectedSong(song?.data?.data[128])
         }
@@ -89,14 +88,6 @@ const Player = ({ isOpen, setIsOpen, isPlaying, setIsPlaying, playingList, setPl
 
         setArrayIdx(arr)
     }, [playingList, favouriteList])
-
-    useEffect(() => {
-        // if (selectedSong) {
-        //     const audioA = new Audio(selectedSong)
-        //     audioA?.play()
-        // }
-
-    }, [selectedSong])
 
     useEffect(() => {
         /**
@@ -172,7 +163,7 @@ const Player = ({ isOpen, setIsOpen, isPlaying, setIsPlaying, playingList, setPl
         <>
             {token && selectedId && (
                 <>
-                    <audio id="myAudio" controls src={`https://vnso-zn-5-tf-mp3-s1-zmp3.zmdcdn.me/1ac0a128a36b4a35137a/2298146684344709139?authen=exp=1692351738~acl=/1ac0a128a36b4a35137a/*~hmac=299fd7bc6bc3a5e9790c8093f80ef585&fs=MTY5MjE3ODkzODmUsIC2M3x3ZWJWNnwwfDU4LjE4Ni4xMDkdUngMTQw`} onEnded={isRepeatOnce ? repeatAudio : handleNextSong} >
+                    <audio className="hidden" id="myAudio" controls src={`${selectedSong}`} onEnded={isRepeatOnce ? repeatAudio : handleNextSong} >
                     </audio>
                     {hover && (
                         <div className={`hidden sm:block w-full h-56 rounded-md bg-black p-2 overflow-y-auto`} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
