@@ -225,11 +225,6 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
         setArrayIdx2(arr)
     }, [chart, favouriteList, type])
 
-    useEffect(() => {
-        // console.log(favouriteList)
-        console.log(arrayIdx)
-    }, [arrayIdx])
-
     // useEffect(() => {
     //     console.log('home')
     //     console.log(home)
@@ -239,7 +234,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
     return (
         <>
             <div className="w-full h-full sm:overflow-y-auto lg:flex lg:gap-4 sm:playlistSong">
-                <div className="w-full h-full pb-16 sm:pb-0 lg:w-[70%] lg:h-full bg-black-200 pt-4 px-6 rounded-sm">
+                <div className="w-full h-full sm:pb-0 lg:w-[70%] lg:h-full bg-black-200 pt-4 px-6 rounded-sm">
 
                     <div className="w-full flex justify-center items-center gap-2 pb-2 border-b-2 border-white-200">
                         <div className="text-base sm:text-2xl w-1/2 text-gray-200">Music Space</div>

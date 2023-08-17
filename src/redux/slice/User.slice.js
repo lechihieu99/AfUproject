@@ -40,7 +40,6 @@ export const userSlice = createSlice({
         builder.addCase(getAllUser.fulfilled, (state, action) => {
             state.status = 'idle';
             state.userList = action.payload;
-            console.log(action.payload)
         })
         builder.addCase(getAllUser.rejected, (state) => {
             state.status = 'failed'

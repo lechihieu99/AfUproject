@@ -77,12 +77,6 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
         setArrayIdx(arr)
     }, [location?.pathname?.slice(24), favouriteList])
 
-    useEffect(() => {
-        console.log(lyricsSong)
-        console.log(search)
-        console.log(searchArtist)
-    }, [search, searchArtist, lyricsSong])
-
 
     return (
         <>
@@ -203,7 +197,7 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                         <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full" >
                                             <div className={`w-full flex hover:bg-greyblue`}>
                                                 <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
-                                                <div className="w-[60%] xl:w-[75%] flex flex-col pl-2 justify-center">
+                                                <div className={` ${item.streamingStatus === 2 ? "premiumTrackPage" : "notPremiumTrackPage"} flex flex-col pl-2 justify-center`}>
                                                     <p className="text-sm xl:text-base text-white truncate">{item.title}</p>
                                                     <p className="text-xs xl:text-sm text-gray-400">{item.artistsNames}</p>
                                                 </div>
@@ -227,7 +221,7 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                         <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full"  >
                                             <div className={`w-full flex hover:bg-greyblue`}>
                                                 <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
-                                                <div className="flex w-[60%] xl:w-[75%] flex-col pl-2 justify-center">
+                                                <div className="flex flex-col pl-2 justify-center notPremiumTrackPage">
                                                     <p className="text-sm xl:text-base text-white truncate">{item.title}</p>
                                                     <p className="text-xs xl:text-sm text-gray-400">{item.artistsNames}</p>
                                                 </div>
@@ -247,11 +241,11 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                 <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full" >
                                     <div className={`w-full flex hover:bg-greyblue`}>
                                         <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
-                                        <div className="w-[60%] xl:w-[75%] flex flex-col pl-2 justify-center">
+                                        <div className={` flex flex-col pl-2 justify-center ${item.streamingStatus === 2 ? "premiumTrackPage" : "notPremiumTrackPage"}`}>
                                             <p className="text-sm xl:text-base text-white truncate">{item.title}</p>
                                             <p className="text-xs xl:text-sm text-gray-400">{item.artistsNames}</p>
                                         </div>
-                                        <div className={`flex ${item.streamingStatus !== 2 && "hidden"} px-2 justify-end items-center gap-4 text-gray-200`} style={{ width: 'calc(40% - 56px)' }}>
+                                        <div className={`flex ${item.streamingStatus !== 2 && "hidden"} px-2 justify-end items-center gap-4 text-gray-200`}>
                                             {item.streamingStatus === 2 && (
                                                 <div className="text-yellow-200 px-2 bg-black-200 h-4 flex justify-center items-center rounded-full" style={{ fontSize: '8px' }} >Premium</div>
                                             )}
@@ -271,7 +265,7 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                 <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full"  >
                                     <div className={`w-full flex hover:bg-greyblue`}>
                                         <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
-                                        <div className="flex w-[60%] xl:w-[75%] flex-col pl-2 justify-center">
+                                        <div className="flex flex-col pl-2 justify-center notPremiumTrackPage">
                                             <p className="text-sm xl:text-base text-white truncate">{item.title}</p>
                                             <p className="text-xs xl:text-sm text-gray-400">{item.artistsNames}</p>
                                         </div>

@@ -123,11 +123,11 @@ const SearchPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, sele
                                         <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full">
                                             <div className={`w-full flex hover:bg-greyblue`}>
                                                 <div className="w-14 h-14 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
-                                                <div className="flex flex-col pl-2 justify-center" id="infoSong">
+                                                <div className={`flex flex-col pl-2 justify-center ${item.streamingStatus === 2 ? "premiumTrackPage" : "notPremiumTrackPage"}`} id="infoSong">
                                                     <p className="text-base text-gray-200 truncate">{item.title}</p>
                                                     <p className="text-sm text-gray-400">{item.artistsNames}</p>
                                                 </div>
-                                                <div className="w-fit flex px-2 justify-end items-center gap-4">
+                                                <div className={`w-fit flex px-2 justify-end items-center gap-4 ${item.streamingStatus !== 2 && "hidden"}`}>
                                                     {item.streamingStatus === 2 && (
                                                         <div className="text-yellow-200 px-2 bg-black-200 h-4 flex justify-center items-center rounded-full" style={{ fontSize: '8px' }} >Premium</div>
                                                     )}

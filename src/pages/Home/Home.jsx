@@ -96,7 +96,7 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
                                 <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full" >
                                     <div className={`w-full flex hover:bg-greyblue`}>
                                         <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
-                                        <div className="flex flex-col pl-2 justify-center" style={{ width: 'calc(100% - 56px)' }}>
+                                        <div className="flex flex-col pl-2 justify-center" style={{ width: 'calc(100% - 76px)' }}>
                                             <p className="text-sm 2xl:text-base xl:text-sm text-white truncate">{item.title}</p>
                                             <p className="text-xs 2xl:text-sm xl:text-xs text-gray-400">{item.artistsNames}</p>
                                         </div>

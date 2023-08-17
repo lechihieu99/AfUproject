@@ -3,11 +3,11 @@
 }
 
 .premium {
-    width: calc(100% - 216px);
+    width: calc(100% - 221px);
 }
 
 .notPremium {
-    width: calc(100% - 147px);
+    width: calc(100% - 157px);
 }
 
 .premiumChart {
@@ -19,9 +19,17 @@
 }
 
 .premiumWeek {
-    width: calc(90% - 216px);
+    width: calc(90% - 211px);
 }
 
 .notPremiumWeek {
     width: calc(90% - 147px);
+}
+
+.premiumTrackPage {
+    width: calc(100% - 147px);
+}
+
+.notPremiumTrackPage {
+    width: calc(100% - 85px);
 }

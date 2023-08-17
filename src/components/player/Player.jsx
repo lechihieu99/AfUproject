@@ -96,7 +96,6 @@ const Player = ({ isOpen, setIsOpen, isPlaying, setIsPlaying, playingList, setPl
         function handleClickOutside(event) {
             if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
                 // alert("You clicked outside of me!");
-                console.log("You clicked outside of me!")
                 setIsOpen(false)
             }
         }

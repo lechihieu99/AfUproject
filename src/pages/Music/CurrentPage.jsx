@@ -56,7 +56,7 @@ const CurrentPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, sel
     return (
         <>
             <div className="w-full h-full flex gap-4">
-                <div className="w-[70%] h-full bg-black-200 pt-4 px-6 rounded-sm overflow-y-auto">
+                <div className="w-full sm:w-[70%] h-full bg-black-200 pt-4 px-6 rounded-sm overflow-y-auto">
                     <div className="w-full flex justify-center items-center gap-2 pb-2 border-b-2 border-white-200">
                         <div className="text-base sm:text-2xl w-1/2 text-gray-200">
                             <Link to="/afuproject/music">
@@ -67,7 +67,7 @@ const CurrentPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, sel
                         <Search isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} />
                     </div>
                     <div className="w-full text-3xl text-white flex justify-start items-center pb-2 gap-4" style={{ height: 'calc(100% - 50px)' }}>
-                        <div className="w-1/3 h-full flex flex-col pt-4 ">
+                        <div className="hidden w-1/3 h-full sm:flex flex-col pt-4 ">
                             <div className="w-full h-2/3 overflow-y-auto">
                                 <div className="w-full h-2/3 bg-blue-velvet flex justify-center items-center" >Gần đây</div>
                                 <div className="w-full pt-2 text-xl font-semibold text-gray-200 text-center">Gần đây</div>
@@ -92,8 +92,11 @@ const CurrentPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, sel
                                 </div>
                             </div> */}
                         </div>
-                        <div className="w-2/3 h-full pt-2">
+                        <div className="w-full sm:w-2/3 h-full pt-2">
                             <div className="w-full h-[15%] overflow-y-auto text-gray-200 pb-2 border-b-[1px] border-white-200">
+                                <div className="w-full pt-2 text-xl font-semibold text-gray-200 text-center">Gần đây</div>
+                                <div className="w-full pt-2 text-sm font-semibold text-gray-400 text-center">Nhiều nghệ sĩ</div>
+
                                 <div className="text-sm">
                                     <span className="font-bold text-base">Mô tả: </span>Playlist bao gồm các bài hát mà bạn đã nghe qua
                                 </div>
@@ -103,7 +106,7 @@ const CurrentPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, sel
                         </div>
                     </div>
                 </div>
-                <div className="w-[30%] h-full bg-black-200 pt-2 px-2 rounded-sm">
+                <div className="w-[30%] hidden sm:block h-full bg-black-200 pt-2 px-2 rounded-sm">
                     {selectedId ? (
 
                         <div className="w-full h-full p-4 flex flex-col gap-4">
