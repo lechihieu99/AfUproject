@@ -253,16 +253,15 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                                     className="rounded-sm"
                                                 />
                                             </Link>
-                                        ) :
-                                            item.type === 4 && (
-                                                <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full">
-                                                    <img
-                                                        alt="..."
-                                                        src={`${item.banner}`}
-                                                        className="rounded-sm"
-                                                    />
-                                                </Link>
-                                            )
+                                        ) : (
+                                            <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full">
+                                                <img
+                                                    alt="..."
+                                                    src={`${item.banner}`}
+                                                    className="rounded-sm"
+                                                />
+                                            </Link>
+                                        )
                                     )}
 
                                 </Carousel>
