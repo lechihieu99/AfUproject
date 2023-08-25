@@ -7,9 +7,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import ModalLogin from "../../components/modalLogin/ModalLogin";
 import ModalSignIn from "../../components/modalSignUp/ModalSignUp";
 import { images } from "../../constants/GetImages";
-import { API_HOST } from "../../constants/Pathname";
 import { loginAccount, signinAccount } from "../../redux/slice/Auth.slice";
 import { Link, useNavigate } from "react-router-dom";
+
+import { Eye, EyeSlash } from '@phosphor-icons/react'
+
 import './style.css'
 import Cookies from "js-cookie";
 
@@ -35,6 +37,9 @@ const Login = ({ setSelectedId, setIsPlaying }) => {
     const [check, setCheck] = useState(false)
 
     const [show, setShow] = useState(false)
+
+    const [visiblePassLogin, setVisiblePassLogin] = useState(false)
+    const [visibleRepeatSignin, setVisibleRepeatSignin] = useState(false)
 
     useEffect(() => {
         setShow(true)
@@ -70,7 +75,7 @@ const Login = ({ setSelectedId, setIsPlaying }) => {
         return () => {
             document.removeEventListener('keydown', keyDownHandler);
         };
-    }, []);
+    }, [type]);
 
     // useEffect(() => {
     //     if (status === 'success') {
@@ -166,18 +171,27 @@ const Login = ({ setSelectedId, setIsPlaying }) => {
                         </div>
                         <div className="mb-4">
                             <label for="password" className="block mb-2 text-sm font-medium text-gray-200 dark:text-white">Password</label>
-                            <input type="password" id="password" className="bg-black-200 border border-gray-300 text-white text-sm rounded-lg focus:ring-white focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-white-200" required />
+                            <div className="w-full relative">
+                                <input type={visiblePassLogin ? "text" : "password"} id="password" className="bg-black-200 border border-gray-300 text-white text-sm rounded-lg focus:ring-white focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-white-200" required />
+                                <div className="absolute top-3 right-2 cursor-pointer w-fit text-pink-velvet" onClick={() => setVisiblePassLogin(!visiblePassLogin)}>
+                                    {visiblePassLogin ? (
+                                        <Eye size={18} />
+                                    ) : (
+                                        <EyeSlash size={18} />
+                                    )}
+                                </div>
+                            </div>
                             <div className="text-sm text-pink-velvet">{errPassword}</div>
                         </div>
                         {type === 'login' ? (
                             <>
 
-                                <div class="flex items-start mb-4">
+                                {/* <div class="flex items-start mb-4">
                                     <div class="flex items-center h-5">
                                         <input id="remember" type="checkbox" value="" class="w-4 h-4 cursor-pointer border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" />
                                     </div>
                                     <label for="remember" class="cursor-pointer ml-2 text-sm text-gray-300 font-medium dark:text-gray-300">Remember me?</label>
-                                </div>
+                                </div> */}
                             </>
 
                         )
@@ -185,7 +199,17 @@ const Login = ({ setSelectedId, setIsPlaying }) => {
                             (
                                 <div className="mb-4">
                                     <label for="repeat-password" className="block mb-2 text-sm font-medium text-gray-200 dark:text-white">Repeat Password</label>
-                                    <input type="password" id="repeat-password" className="bg-black-200 border border-gray-300 text-white text-sm rounded-lg focus:ring-white focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-white-200" required />
+                                    <div className="w-full relative">
+                                        <input type={visibleRepeatSignin ? "text" : "password"} id="repeat-password" className="bg-black-200 border border-gray-300 text-white text-sm rounded-lg focus:ring-white focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-white-200" required />
+                                        <div className="absolute top-3 right-2 cursor-pointer w-fit text-pink-velvet" onClick={() => setVisibleRepeatSignin(!visiblePassLogin)}>
+                                            {visibleRepeatSignin ? (
+                                                <Eye size={18} />
+                                            ) : (
+                                                <EyeSlash size={18} />
+                                            )}
+                                        </div>
+                                    </div>
+                                    {/* <input type="password" id="repeat-password" className="bg-black-200 border border-gray-300 text-white text-sm rounded-lg focus:ring-white focus:border-none block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-white-200" required /> */}
                                     <div className="text-sm text-pink-velvet">{errRepeatPass}</div>
                                 </div>
                             )}
@@ -274,7 +298,8 @@ const Login = ({ setSelectedId, setIsPlaying }) => {
                     <div>Vui lòng thực hiện các bước sau để trang web được hoạt động</div>
                     <div>Bước 1: Truy cập đường link sau: <Link to="https://192.168.137.1:3114/api" target="_blank" className="cursor-pointer text-blue-200">Link</Link></div>
                     <div>Bước 2: Chấp nhận kết nối: <span className="font-bold">Nâng cao (Advanced)</span> - <span className="font-bold">Tiếp tục truy cập (không an toàn)/Proceed to connection (unsafe)</span></div>
-                    <div>Bước 3: Khi nhận được thông báo chấp nhận, quay về trang web và tải lại trang</div>
+                    <div>Bước 3: Khi nhận được thông báo chấp nhận, quay về trang web và thực hiện đăng nhập</div>
+                    <div className="text-red-400">Nếu bạn đã chấp nhận kết nối rồi thì có thể bỏ qua thông báo này</div>
                 </Modal.Body>
             </Modal>
             {/* )} */}

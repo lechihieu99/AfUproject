@@ -16,6 +16,7 @@ import MusicPage from "../pages/Music/Music";
 import PlaylistPage from "../pages/Music/PlaylistPage";
 import TrackPage from "../pages/Music/TrackPage";
 import SearchPage from "../pages/Search/SearchPage";
+import User from "../pages/User/User";
 const Router = () => {
 
     const navigate = useNavigate();
@@ -91,6 +92,7 @@ const Router = () => {
                             <Route path="afuproject/music/current/:id" element={<Layout element={<CurrentPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
                             <Route path="afuproject/music/favourite/:id" element={<Layout element={<FavouritePage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
 
+                            <Route path="afuproject/me" element={<Layout element={<User />} />} />
                         </Route>
                     </Routes>
                 )

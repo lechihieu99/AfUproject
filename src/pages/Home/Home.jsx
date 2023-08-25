@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getCurrentGameList } from "../../redux/slice/Game.slice";
 import { SignOut } from "@phosphor-icons/react";
+import { getUser } from "../../redux/slice/User.slice";
 
 const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
     const dispatch = useDispatch()
@@ -18,9 +19,9 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
 
     const currentList = useSelector((state) => state.music.currentList)
     const home = useSelector((state) => state.music.home)
+    const user = useSelector((state) => state.user.user)
 
     const currentGameList = useSelector((state) => state.game.currentGameList)
-
 
     const token = Cookies.get('tokenId')
 
@@ -28,12 +29,17 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
 
     useEffect(() => {
         dispatch(getHome())
+        dispatch(getUser({ tokenId: token }))
     }, [])
 
     useEffect(() => {
         dispatch(getCurrentList({ id: token }))
         dispatch(getCurrentGameList({ id: token }))
     }, [selectedId])
+
+    useEffect(() => {
+        console.log(user)
+    }, [user])
 
     const logOut = () => {
         Cookies.remove('tokenId');
@@ -47,8 +53,8 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
             <div className="w-full h-full pb-16 sm:pb-0 overflow-y-auto lg:flex lg:gap-4 playlistSong">
                 <div className="lg:w-[70%] lg:h-full sm:w-full bg-black-200 pt-4 px-6 rounded-sm overflow-y-auto">
                     <div className="w-full flex flex-col justify-center items-start gap-2 pb-2 border-b-2 border-white-200">
-                        <div className="text-2xl text-gray-200">Admin</div>
-                        <div className="text-base text-gray-200">admin@gmail.com</div>
+                        <div className="text-2xl text-gray-200">{user?.data[0]?.name}</div>
+                        <div className="text-base text-gray-200">{user?.data[0]?.email}</div>
                         <div className="w-full block sm:hidden p-2 bg-greyblue flex justify-center items-center cursor-pointer text-gray-200 gap-4"
                             onClick={logOut}
                         >
@@ -92,7 +98,7 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
                             <div className="text-xs rounded-full 2xl:text-sm xl:text-xs bg-gray-200 px-4 flex justify-center items-center cursor-pointer" style={{ paddingBottom: '2px' }} onClick={() => setTypeList('games')}>Current Games</div>
                         </div>
                         <div className="w-full overflow-y-auto" style={{ height: 'calc(100% - 41px)' }}>
-                            {typeList === 'track' && currentList?.data?.map((item) => (
+                            {typeList === 'track' ? currentList?.data?.map((item) => (
                                 <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full" >
                                     <div className={`w-full flex hover:bg-greyblue`}>
                                         <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
@@ -103,9 +109,11 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
 
                                     </div>
                                 </Link>
-                            ))}
+                            )) : !currentList?.data && (
+                                <div className="w-full text-center text-gray-400 ">Không có bài hát</div>
+                            )}
 
-                            {typeList === 'games' && currentGameList?.data?.map((item) => (
+                            {typeList === 'games' ? currentGameList?.data?.map((item) => (
                                 <Link to={`/afuproject/games/${item.id}`} className="w-full" >
                                     <div className={`w-full flex hover:bg-greyblue`}>
                                         <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'cover' }}></div>
@@ -118,7 +126,9 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
 
                                     </div>
                                 </Link>
-                            ))}
+                            )) : !currentGameList?.data && (
+                                <div className="w-full text-center text-gray-400 ">Không có games</div>
+                            )}
                         </div>
                     </div>
                     <div className="w-full h-1/3 py-4">

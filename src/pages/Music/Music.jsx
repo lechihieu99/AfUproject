@@ -4,7 +4,7 @@ import Search from "../../components/searchInput/Search";
 import { addFavouriteList, getChart, getFavouriteList, getHome, getTop100, removeFavouriteList } from "../../redux/slice/Music.slice";
 import ApexCharts from "apexcharts";
 import { useState } from "react";
-import { Carousel } from "flowbite-react";
+import { Carousel, Tooltip } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { Heart, Play, Pause, Article, ArrowRight } from "@phosphor-icons/react";
 import Cookies from "js-cookie";
@@ -290,7 +290,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                             )}
                                             <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                             <div className={`${item.streamingStatus === 2 ? "premiumWeek" : "notPremiumWeek"} flex flex-col pl-2 justify-center`}>
-                                                <p className={`text-sm xl:text-base text-white truncate ${item.streamingStatus === 2 && "lg:w-[50%]"}`}>{item.title}</p>
+                                                <Link to={`/afuproject/music/track/${item.encodeId}`} className={`text-sm xl:text-base text-white truncate ${item.streamingStatus === 2 && "lg:w-[50%]"}`}>{item.title}</Link>
                                                 <p className={`text-xs xl:text-sm text-gray-400 ${item.streamingStatus === 2 && "lg:w-[50%]"}`}>{item.artistsNames}</p>
                                             </div>
                                             <div className={`${item.streamingStatus === 2 ? "w-36" : "w-20"} flex px-2 justify-end items-center gap-4 text-gray-200`} >
@@ -371,7 +371,11 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                                 <div className="text-yellow-200 px-2 bg-black-200 h-4 flex justify-center items-center rounded-full" style={{ fontSize: '8px' }} >Premium</div>
                                             )}
                                             <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-fit">
-                                                <Article size={16} />
+                                                <Tooltip
+                                                    content="Xem chi tiết"
+                                                >
+                                                    <Article size={16} />
+                                                </Tooltip>
                                             </Link>
                                             {arrayIdx?.includes(idx) ? (
                                                 <div className="w-fit">
@@ -410,7 +414,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                         <div className="w-full h-full lg:hidden lg:bg-black-200 mb-4 rounded-sm mt-80">
                             <div className="w-full rounded-sm bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
                                 <div className="px-4 py-8 w-full text-center">
-                                    <h1 className="w-full 2xl:text-3xl xl:text-2xl lg:text-xl font-bold text-white ">Chill cùng AfU</h1>
+                                    <h1 className="w-full xl:text-2xl lg:text-xl font-bold text-white ">Chill cùng AfU</h1>
                                     <p className="w-full px-8 py-4 text-xs lg:hidden xl:text-base 2xl:text-base flex justify-center items-center font-normal text-gray-400">Hãy cùng tận hưởng những playlist với hơi hướng thư giãn và làm dịu tâm hồn nào.</p>
                                     <div className="flex flex-wrap w-full">
                                         {home?.data?.data?.items[3]?.items?.map((item, idx) => idx <= 3 && (

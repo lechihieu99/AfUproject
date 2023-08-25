@@ -29,6 +29,28 @@ export const getUser = createAsyncThunk('getUser', async (data) => {
 }
 )
 
+export const uploadAvatar = createAsyncThunk('uploadAvatar', async (data) => {
+    const { tokenId, formData } = data;
+    try {
+        const upload = userController.uploadAvatar(tokenId, formData)
+        return upload;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+export const getAvatar = createAsyncThunk('getAvatar', async (data) => {
+    const { tokenId } = data;
+    try {
+        const getAva = userController.getAvatar(tokenId)
+        return getAva;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
 export const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -52,6 +74,27 @@ export const userSlice = createSlice({
             state.user = action.payload;
         })
         builder.addCase(getUser.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(uploadAvatar.pending, (state) => {
+            state.statusUpload = 'loading';
+        })
+        builder.addCase(uploadAvatar.fulfilled, (state, action) => {
+            state.statusUpload = 'success';
+        })
+        builder.addCase(uploadAvatar.rejected, (state) => {
+            state.statusUpload = 'failed'
+        })
+
+        builder.addCase(getAvatar.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(getAvatar.fulfilled, (state, action) => {
+            state.status = 'success';
+            state.avatar = action.payload;
+        })
+        builder.addCase(getAvatar.rejected, (state) => {
             state.status = 'failed'
         })
     }

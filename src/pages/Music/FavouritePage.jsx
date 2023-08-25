@@ -68,7 +68,7 @@ const FavouritePage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, s
                         <Search isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} />
                     </div>
                     <div className="w-full text-3xl text-white flex justify-start items-center pb-2 gap-4" style={{ height: 'calc(100% - 50px)' }}>
-                        <div className="hidden w-1/3 h-full flex flex-col pt-4 ">
+                        <div className="hidden w-1/3 h-full sm:flex flex-col pt-4 ">
                             <div className="w-full h-2/3 overflow-y-auto">
                                 <div className="w-full h-2/3 bg-blue-velvet flex justify-center items-center" >
                                     <Heart size={32} weight="fill" className="text-pink-velvet" />
@@ -97,8 +97,8 @@ const FavouritePage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, s
                         </div>
                         <div className="w-full sm:w-2/3 h-full pt-2">
                             <div className="w-full h-[15%] overflow-y-auto text-gray-200 pb-2 border-b-[1px] border-white-200">
-                                <div className="w-full pt-2 text-xl font-semibold text-gray-200 text-center">Danh sách yêu thích</div>
-                                <div className="w-full pt-2 text-sm font-semibold text-gray-400 text-center">Nhiều nghệ sĩ</div>
+                                <div className="w-full sm:hidden pt-2 text-xl font-semibold text-gray-200 text-center">Danh sách yêu thích</div>
+                                <div className="w-full sm:hidden pt-2 text-sm font-semibold text-gray-400 text-center">Nhiều nghệ sĩ</div>
 
                                 <div className="text-sm">
                                     <span className="font-bold text-base">Mô tả: </span>Playlist bao gồm các bài hát mà bạn đã nghe qua

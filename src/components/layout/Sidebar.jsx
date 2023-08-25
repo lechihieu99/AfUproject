@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { GameController, Guitar, SignOut, HouseLine, List, X } from '@phosphor-icons/react'
+import { GameController, Guitar, SignOut, HouseLine, List, X, UserCircle } from '@phosphor-icons/react'
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -20,8 +20,14 @@ const menu = [
     {
         id: 2,
         icon: <Guitar size={window.innerWidth <= 1024 ? 20 : 28} weight="fill" />,
-        title: 'Music Space',
+        title: 'Music',
         link: '/afuproject/music'
+    },
+    {
+        id: 3,
+        icon: <UserCircle size={window.innerWidth <= 1024 ? 20 : 28} weight="fill" />,
+        title: 'Cá nhân',
+        link: '/afuproject/me'
     },
 ]
 

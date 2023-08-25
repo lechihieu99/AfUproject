@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { addFavouriteList, getFavouriteList, removeFavouriteList } from "../../redux/slice/Music.slice";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 const PlaylistSong = ({ isPlaying, setIsPlaying, playlist, playingList, setPlayingList, selectedSong, setSelectedSong }) => {
     const token = Cookies.get('tokenId')
 
@@ -40,7 +41,7 @@ const PlaylistSong = ({ isPlaying, setIsPlaying, playlist, playingList, setPlayi
                 <div className={`w-full flex ${selectedSong === item.encodeId ? "bg-greyblue hover:bg-grey-blue" : "hover:bg-blue-velvet"} `}>
                     <div className="w-14 h-14 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                     <div className={` flex flex-col pl-2 justify-center ${item.streamingStatus === 2 ? "premium" : "notPremium"}`}>
-                        <p className="text-sm xl:text-base truncate">{item.title}</p>
+                        <Link to={`/afuproject/music/track/${item.encodeId}`} className="text-sm xl:text-base truncate">{item.title}</Link>
                         <p className="text-xs xl:text-sm text-gray-400">{item.artistsNames}</p>
                     </div>
                     <div className={`${item.streamingStatus === 2 ? "w-36" : "w-20"} flex px-2 justify-end items-center gap-4 `}>
