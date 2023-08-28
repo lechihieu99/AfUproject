@@ -51,6 +51,17 @@ export const getAvatar = createAsyncThunk('getAvatar', async (data) => {
     }
 })
 
+export const updateInforUser = createAsyncThunk('updateInforUser', async (data) => {
+    const { tokenId, name, email, birthday, sex, education, habit } = data;
+    try {
+        const update = userController.updateInformationUser(tokenId, name, email, birthday, sex, education, habit)
+        return update;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
 export const userSlice = createSlice({
     name: 'user',
     initialState,
@@ -95,6 +106,16 @@ export const userSlice = createSlice({
             state.avatar = action.payload;
         })
         builder.addCase(getAvatar.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(updateInforUser.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(updateInforUser.fulfilled, (state, action) => {
+            state.status = 'success';
+        })
+        builder.addCase(updateInforUser.rejected, (state) => {
             state.status = 'failed'
         })
     }

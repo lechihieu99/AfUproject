@@ -38,8 +38,14 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
     }, [selectedId])
 
     useEffect(() => {
-        console.log(user)
-    }, [user])
+        window.addEventListener('online', function (e) {
+            console.log('And we\'re back :).');
+        }, false);
+
+        window.addEventListener('offline', function (e) {
+            console.log('Connection is down.');
+        }, false);
+    }, [])
 
     const logOut = () => {
         Cookies.remove('tokenId');

@@ -6,11 +6,17 @@ import Slide3 from '../assets/images/auth/slide3.png'
 import Slide4 from '../assets/images/auth/slide4.png'
 
 import Slide33 from '../assets/images/auth/slide33.png'
+import DefaultAvatar from '../assets/images/auth/logo.png'
+import NotFound from '../assets/images/auth/404_NotFound.png'
 export const images = {
     LoginBackground: LoginBackground,
     Slide1: Slide1,
     Slide2: Slide2,
     Slide3: Slide3,
     Slide4: Slide4,
-    Test: Slide33
+    Test: Slide33,
+
+    DefaultAvatar: DefaultAvatar,
+
+    NotFound: NotFound,
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { GameController, Guitar, SignOut, HouseLine, List, X, UserCircle } from '@phosphor-icons/react'
+import { GameController, Guitar, SignOut, HouseLine, List, X, UserCircle, UsersThree } from '@phosphor-icons/react'
 import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -25,9 +25,9 @@ const menu = [
     },
     {
         id: 3,
-        icon: <UserCircle size={window.innerWidth <= 1024 ? 20 : 28} weight="fill" />,
-        title: 'Cá nhân',
-        link: '/afuproject/me'
+        icon: <UsersThree size={window.innerWidth <= 1024 ? 20 : 28} weight="fill" />,
+        title: 'Cộng đồng',
+        link: `/afuproject/community`
     },
 ]
 
@@ -56,7 +56,7 @@ const Sidebar = ({ setLocation, setSelectedId, setIsPlaying }) => {
                 )}
             </div>
 
-            <div className={`${open ? 'w-[80%] xl:w-72 sm:w-56' : 'hidden w-full xl:w-20 sm:w-14'} h-16 sm:h-screen bg-blue-velvet rounded-md absolute left-4 bottom-16 sm:hidden sm:top-0 z-50`}
+            <div className={`${open ? 'w-[80%] xl:w-72 sm:w-56' : 'hidden w-full xl:w-20 sm:w-14'} h-16 sm:h-screen bg-blue-velvet rounded-md absolute left-4 bottom-16 sm:hidden sm:top-0 z-40`}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
             >
@@ -99,7 +99,7 @@ const Sidebar = ({ setLocation, setSelectedId, setIsPlaying }) => {
 
             </div>
 
-            <div className={`${hover ? 'w-full xl:w-72 sm:w-56' : 'w-full xl:w-20 sm:w-14'} h-16 sm:h-screen bg-blue-velvet absolute left-0 hidden sm:block sm:top-0 z-50`}
+            <div className={`${hover ? 'w-full xl:w-72 sm:w-56' : 'w-full xl:w-20 sm:w-14'} h-16 sm:h-screen bg-blue-velvet absolute left-0 hidden sm:block sm:top-0 z-40`}
                 onMouseEnter={() => setHover(true)}
                 onMouseLeave={() => setHover(false)}
             >

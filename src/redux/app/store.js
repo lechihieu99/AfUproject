@@ -5,6 +5,7 @@ import favouriteListSlice from '../slice/FavouriteList.slice';
 import userSlice from '../slice/User.slice';
 import musicSlice from '../slice/Music.slice';
 import gameSlice from '../slice/Game.slice';
+import statusSlice from '../slice/Status.slice'
 
 export const store = configureStore({
     reducer: {
@@ -12,7 +13,8 @@ export const store = configureStore({
         favourite: favouriteListSlice,
         user: userSlice,
         music: musicSlice,
-        game: gameSlice
+        game: gameSlice,
+        status: statusSlice
     },
     middleware: [
         ...getDefaultMiddleware({

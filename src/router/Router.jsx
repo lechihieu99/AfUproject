@@ -16,7 +16,9 @@ import MusicPage from "../pages/Music/Music";
 import PlaylistPage from "../pages/Music/PlaylistPage";
 import TrackPage from "../pages/Music/TrackPage";
 import SearchPage from "../pages/Search/SearchPage";
-import User from "../pages/User/User";
+import User from "../pages/Community/User";
+import Community from "../pages/Community/Community";
+import DetailImage from "../components/detailImage/DetailImage";
 const Router = () => {
 
     const navigate = useNavigate();
@@ -25,6 +27,8 @@ const Router = () => {
     const [isPlaying, setIsPlaying] = useState(false)
 
     const [isOpen, setIsOpen] = useState(false)
+    const [showImage, setShowImage] = useState(false)
+    const [image, setImage] = useState()
 
     const status = useSelector((state) => state.auth.status)
 
@@ -60,6 +64,9 @@ const Router = () => {
     return (
 
         <>
+            <div className="w-full h-screen absolute top-0 left-0">
+                <DetailImage show={showImage} setShow={setShowImage} image={image} />
+            </div>
 
             {token !== undefined && (
                 <div className={`${isOpen ? "w-full" : 'w-16'} lg:w-16 xl:hover:w-1/4 lg:hover:w-1/3 sm:hover:w-1/2 flex flex-col items-end justify-center absolute bottom-16 right-0 -translate-y-2 sm:bottom-4 sm:right-4 sm:translate-y-0 z-50`}>
@@ -92,7 +99,8 @@ const Router = () => {
                             <Route path="afuproject/music/current/:id" element={<Layout element={<CurrentPage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
                             <Route path="afuproject/music/favourite/:id" element={<Layout element={<FavouritePage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
 
-                            <Route path="afuproject/me" element={<Layout element={<User />} />} />
+                            <Route path="afuproject/community" element={<Layout element={<Community showImage={showImage} setShowImage={setShowImage} setImage={setImage} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
+                            <Route path="afuproject/:id" element={<Layout element={<User showImage={showImage} setShowImage={setShowImage} setImage={setImage} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
                         </Route>
                     </Routes>
                 )

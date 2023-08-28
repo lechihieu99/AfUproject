@@ -20,6 +20,18 @@ const userController = {
     getAvatar(tokenId) {
         const url = `/get-avatar/${tokenId}`
         return axiosApi.get(url)
+    },
+    updateInformationUser(tokenId, name, email, birthday, sex, education, habit) {
+        const url = `/update-information/${tokenId}`
+        const payload = {
+            name: name,
+            email: email,
+            birthday: birthday,
+            sex: sex,
+            education: education,
+            habit: habit
+        }
+        return axiosApi.post(url, payload)
     }
 }
 
