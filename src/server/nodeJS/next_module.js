@@ -9,7 +9,7 @@
 //     // // var txt = q.year + " " + q.month;
 //     // res.end()
 // }).listen(3000)
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
+// process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 const https = require('https');
 
 const fs = require('fs')
@@ -51,7 +51,7 @@ var cors = require('cors')
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "mypassword",
+    password: "binacous1995",
     database: 'music_service'
 });
 
@@ -177,6 +177,66 @@ const getCurrentGame = (req, res) => {
     var sql = `SELECT * FROM current_game WHERE userId = '${params.id}' ORDER BY id DESC`;
     con.query(sql, function (err, result) {
         res.send(result)
+    })
+}
+
+const getAvatar = (req, res) => {
+    const params = req.params;
+
+    var sql = `SELECT avatar FROM user WHERE tokenId = '${params.id}'`
+    con.query(sql, function (err, result) {
+        res.send(result)
+    })
+}
+
+const getUserStatus = (req, res) => {
+    const params = req.params;
+
+    var sql = `SELECT * FROM status WHERE userId = "${params.id}" ORDER BY id DESC`
+    con.query(sql, function (err, result) {
+        res.send(err ? err : result)
+    })
+}
+
+const getUserLikeList = (req, res) => {
+    const params = req.params;
+
+    var sql = `SELECT * FROM like_list WHERE userId = "${params.id}"`
+    con.query(sql, function (err, result) {
+        res.send(err ? err : result)
+    })
+}
+
+const getAllStatus = (req, res) => {
+    var sql = 'SELECT S.id, S.userId, S.likeNumber, S.comment, S.star, S.share, S.content, S.image, S.imageContent, S.type, S.link, U.name, U.avatar FROM status as S inner join user as U on S.userId = U.tokenId ORDER BY S.id DESC'
+    con.query(sql, function (err, result) {
+        res.send(err ? err : result)
+    })
+}
+
+const getAllCommentStatus = (req, res) => {
+    const params = req.params;
+    var sql = `SELECT C.id, C.linkStatus, C.ownerId, C.userComment, C.commentId, C.content, C.likeNumber, U.name, U.avatar FROM comment as C inner join user as U on C.userComment = U.tokenId WHERE C.linkStatus = "${params.id}"`
+    con.query(sql, function (err, result) {
+        res.send(err ? err : result)
+    })
+}
+
+const getAllCommentLikeList = (req, res) => {
+    const params = req.params;
+
+    var sql = `SELECT * FROM likecomment WHERE linkStatus = "${params.id}"`
+    con.query(sql, function (err, result) {
+        res.send(err ? err : result)
+    })
+}
+
+const getAllStarListByUser = (req, res) => {
+    const params = req.params;
+
+    var sql = `SELECT S.linkStatus, S.ownerId, U.name, U.tokenId, U.avatar, Stt.likeNumber, Stt.userId, Stt.comment, Stt.star, Stt.share, Stt.content, Stt.image, Stt.imageContent, Stt.type, Stt.link FROM (star_list as S inner join user as U on S.tokenId = U.tokenId) inner join status as Stt on S.linkStatus = Stt.link WHERE S.tokenId = '${params.id}'`
+    con.query(sql, function (err, result) {
+        res.send(err ? err : result)
     })
 }
 
@@ -360,6 +420,307 @@ const addGameToCurrentList = (req, res) => {
     })
 }
 
+var fileupload = require("express-fileupload");
+app.use(fileupload());
+app.use(express.urlencoded({ extended: true }));
+
+const updateAvatar = (req, res) => {
+    const params = req.params;
+    try {
+        fs.writeFileSync(`./image/avatar/${params.id}_${req.files.file.name}`, req.files.file.data)
+        console.log('image has been uploaded')
+        var sql = `UPDATE user SET avatar="https://192.168.137.1:3114/image/avatar/${params.id}_${req.files.file.name}" WHERE tokenId = "${params.id}"`
+        con.query(sql, function (err, result) {
+            res.send(err ? err : result)
+            console.log('1 record iupdated')
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const updateUser = (req, res) => {
+    var q = req.body;
+    const params = req.params;
+    sql = `UPDATE user SET name="${q.name}", email="${q.email}", birthday="${q.birthday}", sex="${q.sex}", education="${q.education}", habit="${q.habit}" WHERE tokenId = "${params.id}"`
+    con.query(sql, function (err, result) {
+        res.send(err ? err : result)
+        console.log('1 user has been updated')
+    })
+}
+
+const postImage = (req, res) => {
+    const params = req.params;
+    try {
+        fs.writeFileSync(`./image/other/${params.id}_${decodeURI(req.files.file.name)}`, req.files.file.data)
+        console.log('other image has been uploaded')
+        res.status(200)
+        res.send('OK')
+        // var sql = `UPDATE status SET image="https://192.168.137.1:3114/image/other/${params.id}_${req.files.file.name}" WHERE linkNumber = "${params.link}"`
+        // con.query(sql, function (err, result) {
+        //     res.send(err ? err : result)
+        //     console.log('1 record iupdated')
+        // })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const postStatus = (req, res) => {
+    var q = req.body;
+
+    var link = Math.random().toString(36).slice(2, 30);
+
+    var sqlLink = 'SELECT link FROM status';
+    con.query(sqlLink, function (err, result) {
+        var arrToken = result;
+        var arrTemp = [];
+        arrToken?.map((item) => {
+            arrTemp.push(item?.link)
+        })
+        while (arrTemp?.includes(link) === true) {
+            link = Math.random().toString(36).slice(2, 30);
+        }
+        sql = `INSERT INTO status (userId, likeNumber, comment, star, share, content, image, imageContent, type, link) VALUES ("${q.tokenId}", "${q.like}", "${q.comment}", "${q.star}", "${q.share}", "${q.content}", "${q.image}", "${q.imageContent}", "${q.type}", "${link}")`
+        con.query(sql, function (err, result) {
+            res.send(err ? err : result)
+        })
+    })
+}
+
+const removeStatus = (req, res) => {
+    var q = req.body;
+
+    var sql = `DELETE FROM status WHERE link = "${q.link}"`
+    con.query(sql, function (err, result) {
+        console.log('1 status has been removed')
+        res.send(err ? err : result)
+    })
+}
+
+const addLikeNumberStatus = (req, res) => {
+    var q = req.body;
+    var sql = `SELECT likeNumber FROM status WHERE link = "${q.link}"`
+    con.query(sql, function (err, result) {
+        var newLike = result[0].likeNumber + 1;
+        var sqlUpdate = `UPDATE status SET likeNumber="${newLike}" WHERE link = "${q.link}"`
+        con.query(sqlUpdate, function (err2, result2) {
+            console.log('1 user liked status')
+            var sqlLikeList = `INSERT INTO like_list (linkStatus, userId) VALUES ("${q.link}", "${q.tokenId}")`
+            con.query(sqlLikeList, function (err3, result3) {
+                console.log('1 user was be added into like list')
+                res.send(err3 ? err3 : result3)
+            })
+
+        })
+    })
+}
+
+const removeLikeStatus = (req, res) => {
+    var q = req.body;
+    var sql = `SELECT likeNumber FROM status WHERE link = "${q.link}"`
+    con.query(sql, function (err, result) {
+        var newLike = result[0].likeNumber - 1;
+        var sqlUpdate = `UPDATE status SET likeNumber="${newLike}" WHERE link = "${q.link}"`
+        con.query(sqlUpdate, function (err2, result2) {
+            console.log('1 user unliked status')
+            var sqlLikeList = `DELETE FROM like_list WHERE linkStatus = "${q.link}" AND userId = "${q.tokenId}"`
+            con.query(sqlLikeList, function (err3, result3) {
+                console.log('1 user was be removed into like list')
+                res.send(err3 ? err3 : result3)
+            })
+
+        })
+    })
+}
+
+const isExistInLikeList = (req, res) => {
+    var q = req.body;
+    let array = [];
+    let count = 0;
+    var sqlList = 'SELECT * FROM like_list'
+    con.query(sqlList, function (err, result) {
+        array = result
+        array?.map((item) => {
+            if (item.linkStatus === q.link && item.userId === q.tokenId)
+                count++;
+        })
+
+        if (count === 0) {
+            console.log(`user ${q.tokenId} is not exist in status ${q.link}`)
+            res.send('none')
+        }
+        else {
+            console.log(`user ${q.tokenId} is not exist in status ${q.link}`)
+            res.send('exist')
+
+        }
+    })
+}
+
+const postComment = (req, res) => {
+    var q = req.body;
+    var sql = `SELECT comment FROM status WHERE link = "${q.link}"`
+
+    var cmtId = Math.random().toString(36).slice(2, 30);
+
+    var sqlCmtId = 'SELECT commentId FROM comment';
+    con.query(sqlCmtId, function (err, result) {
+        var arrToken = result;
+        var arrTemp = [];
+        arrToken?.map((item) => {
+            arrTemp.push(item?.commentId)
+        })
+        while (arrTemp?.includes(cmtId) === true) {
+            cmtId = Math.random().toString(36).slice(2, 30);
+        }
+        con.query(sql, function (err, result) {
+            var newComment = result[0].comment + 1;
+            var sqlUpdate = `UPDATE status SET comment="${newComment}" WHERE link = "${q.link}"`
+            con.query(sqlUpdate, function (err2, result2) {
+                console.log('1 user was comment status')
+                var sqlCommentList = `INSERT INTO comment (linkStatus, ownerId, userComment, commentId, content, likeNumber) VALUES ("${q.link}", "${q.ownerId}", "${q.userComment}", "${cmtId}", "${q.content}", "0")`
+                con.query(sqlCommentList, function (err3, result3) {
+                    console.log('1 user was be added into comment list')
+                    res.send(err3 ? err3 : result3)
+                })
+
+            })
+        })
+    })
+}
+
+const removeComment = (req, res) => {
+    var q = req.body;
+    var sql = `SELECT comment FROM status WHERE link = "${q.link}"`
+    con.query(sql, function (err, result) {
+        var newComment = result[0].comment - 1;
+        var sqlUpdate = `UPDATE status SET comment="${newComment}" WHERE link = "${q.link}"`
+        con.query(sqlUpdate, function (err2, result2) {
+            console.log('1 user removed comment status')
+            var sqlCommentList = `DELETE FROM comment WHERE linkStatus = "${q.link}" AND userComment = "${q.tokenId}"`
+            con.query(sqlCommentList, function (err3, result3) {
+                console.log('1 user was be removed into comment list')
+                res.send(err3 ? err3 : result3)
+            })
+
+        })
+    })
+}
+
+const likeComment = (req, res) => {
+    var q = req.body;
+    console.log(q)
+    var sql = `SELECT likeNumber FROM comment WHERE linkStatus = "${q.link}" AND commentId = "${q.commentId}"`
+    con.query(sql, function (err, result) {
+        var newLike = result[0].likeNumber + 1;
+        var sqlUpdate = `UPDATE comment SET likeNumber="${newLike}" WHERE linkStatus = "${q.link}" AND commentId = "${q.commentId}"`
+        con.query(sqlUpdate, function (err2, result2) {
+            console.log('1 user liked comment')
+            var sqlLikeList = `INSERT INTO likecomment (commentId, ownerComment, userLike, linkStatus) VALUES ("${q.commentId}", "${q.owner}", "${q.userLike}", "${q.link}")`
+            con.query(sqlLikeList, function (err3, result3) {
+                console.log('1 user was be added into like comment list')
+                res.send(err3 ? err3 : result3)
+            })
+
+        })
+    })
+}
+
+const removeLikeComment = (req, res) => {
+    var q = req.body;
+    var sql = `SELECT likeNumber FROM comment WHERE linkStatus = "${q.link}" AND commentId = "${q.commentId}"`
+    con.query(sql, function (err, result) {
+        var newLike = result[0].likeNumber - 1;
+        var sqlUpdate = `UPDATE comment SET likeNumber="${newLike}" WHERE linkStatus = "${q.link}" AND commentId = "${q.commentId}"`
+        con.query(sqlUpdate, function (err2, result2) {
+            console.log('1 user unliked comment')
+            var sqlLikeList = `DELETE FROM likecomment WHERE commentId = "${q.commentId}" AND userLike = "${q.userLike}"`
+            con.query(sqlLikeList, function (err3, result3) {
+                console.log('1 user was be removed into like comment list')
+                res.send(err3 ? err3 : result3)
+            })
+
+        })
+    })
+}
+
+const addStarList = (req, res) => {
+    var q = req.body;
+
+    var sql = `SELECT star FROM status WHERE link = "${q.link}"`
+    con.query(sql, function (err, result) {
+        var newLike = result[0].star + 1;
+        var sqlUpdate = `UPDATE status SET star="${newLike}" WHERE link = "${q.link}"`
+        con.query(sqlUpdate, function (err2, result2) {
+            console.log('1 user star status')
+            var sqlLikeList = `INSERT INTO star_list (linkStatus, ownerId, tokenId) VALUES ('${q.link}', '${q.ownerId}', '${q.tokenId}')`
+            con.query(sqlLikeList, function (err3, result3) {
+                console.log('1 item was be added into star list')
+                res.send(err3 ? err3 : result3)
+            })
+
+        })
+    })
+
+    // let array = [];
+    // let count = 0;
+    // var sqlList = 'SELECT * FROM star_list'
+    // con.query(sqlList, function (err, result) {
+    //     array = result
+    //     array?.map((item) => {
+    //         if (item.linkStatus === q.link && item.tokenId === q.tokenId)
+    //             count++;
+    //     })
+
+    //     if (count === 0) {
+    //         var sql = `INSERT INTO star_list (linkStatus, ownerId, tokenId) VALUES ('${q.link}', '${q.ownerId}', '${q.tokenId}'`
+    //         con.query(sql, function (err, result) {
+    //             res.send(err ? err : result)
+    //             console.log('1 record inserted into star list')
+    //         })
+    //     }
+    //     else {
+    //         var sqlDelete = `DELETE FROM star_list WHERE linkStatus = '${q.link}' AND tokenId = '${q.tokenId}'`
+    //         con.query(sqlDelete, function (err, result) {
+    //             console.log('1 record deleted')
+    //             var sqlInsert = `INSERT INTO star_list (linkStatus, ownerId, tokenId) VALUES ('${q.link}', '${q.ownerId}', '${q.tokenId}'`
+    //             con.query(sqlInsert, function (err, result) {
+    //                 res.send(err ? err : result)
+    //                 console.log('1 record inserted into star list')
+    //             })
+    //         })
+    //     }
+    // })
+}
+
+const removeStarList = (req, res) => {
+    var q = req.body;
+
+    var sql = `SELECT star FROM status WHERE link = "${q.link}"`
+    con.query(sql, function (err, result) {
+        var newLike = result[0].star - 1;
+        var sqlUpdate = `UPDATE status SET star="${newLike}" WHERE link = "${q.link}"`
+        con.query(sqlUpdate, function (err2, result2) {
+            console.log('1 user remove star status')
+            var sqlLikeList = `DELETE FROM star_list WHERE linkStatus = "${q.link}" AND tokenId = "${q.tokenId}"`
+            con.query(sqlLikeList, function (err3, result3) {
+                console.log('1 item was be removed into star list')
+                res.send(err3 ? err3 : result3)
+            })
+
+        })
+    })
+    // var sql = `DELETE FROM star_list WHERE linkStatus = '${q.link}' AND tokenId = '${q.tokenId}'`;
+    // con.query(sql, function (err, result) {
+    //     res.send(err ? err : result)
+    //     // if (err) throw err;
+    //     console.log("1 record deleted");
+    // });
+}
+
+app.use(express.static('public'));
+app.use('/image', express.static('image'));
 app.use(cors())
 
 // GET
@@ -397,6 +758,20 @@ app.get("/api/get-home", getHome)
 
 app.get("/api/get-chart", getChart)
 
+app.get("/api/get-avatar/:id", getAvatar)
+
+app.get("/api/get-user-status/:id", getUserStatus)
+
+app.get("/api/get-like-list/:id", getUserLikeList)
+
+app.get("/api/get-all-status", getAllStatus)
+
+app.get("/api/get-all-comment/:id", getAllCommentStatus)
+
+app.get("/api/get-all-comment-like-list/:id", getAllCommentLikeList)
+
+app.get("/api/get-star-list/:id", getAllStarListByUser)
+
 // POST 
 app.post("/api/auth", authSignin)
 
@@ -407,6 +782,34 @@ app.post("/api/delete-favourite-item", removeFavouriteItem)
 app.post("/api/add-song-currentlist", addSongToCurrentList)
 
 app.post("/api/add-game-currentList", addGameToCurrentList)
+
+app.post("/api/upload-avatar/:id", updateAvatar)
+
+app.post("/api/update-information/:id", updateUser)
+
+app.post("/api/post-status", postStatus)
+
+app.post("/api/remove-status", removeStatus)
+
+app.post("/api/upload-image/:id", postImage)
+
+app.post("/api/add-like-status", addLikeNumberStatus)
+
+app.post("/api/remove-like-status", removeLikeStatus)
+
+app.post("/api/is-exist-status", isExistInLikeList)
+
+app.post("/api/post-comment", postComment)
+
+app.post("/api/remove-comment", removeComment)
+
+app.post("/api/like-comment", likeComment)
+
+app.post("/api/remove-like-comment", removeLikeComment)
+
+app.post("/api/add-star-item", addStarList)
+
+app.post("/api/remove-star-item", removeStarList)
 
 // Creating object of key and certificate
 // for SSL

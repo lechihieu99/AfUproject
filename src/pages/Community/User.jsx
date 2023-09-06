@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { EnvelopeOpen, Cake, UserFocus, Image, VideoCamera, Flag, Sliders } from "@phosphor-icons/react";
+import { EnvelopeOpen, Cake, UserFocus, Image, VideoCamera, Flag, Sliders, GraduationCap, Sparkle } from "@phosphor-icons/react";
 
 import { getAvatar, getUser, uploadAvatar } from "../../redux/slice/User.slice";
 import Status from "./Status";
@@ -35,19 +35,23 @@ const User = ({ showImage, setShowImage, setImage }) => {
     useEffect(() => {
         dispatch(getUser({ tokenId: location.pathname.slice(12) }))
         dispatch(getUserStatus({ tokenId: location.pathname.slice(12) }))
-    }, [])
+    }, [user])
 
     useEffect(() => {
         dispatch(getAvatar({ tokenId: location.pathname.slice(12) }))
     }, [fileImage])
 
+    const handleShowImage = (data) => {
+        setImage(data?.image)
+        setShowImage(true)
+    }
 
     return (
         <>
             <div className="w-full h-full flex gap-4">
                 <div className="w-1/3 h-full overflow-y-auto playlistSong">
                     <div className="w-full flex flex-col gap-4">
-                        <div className="w-full bg-black-200 rounded-sm flex items-center gap-4 p-4">
+                        <div className="w-full bg-black-200 rounded-lg flex items-center gap-4 p-4">
                             <img className="w-28 h-28 rounded-full cursor-pointer" src={avatar?.data[0]?.avatar ? avatar?.data[0]?.avatar : images.DefaultAvatar} onClick={() => setShowAvatar(true)} />
                             <div className="h-full flex flex-col justify-center">
                                 <div className="text-bold text-2xl text-gray-200">{user?.data[0]?.name}</div>
@@ -58,7 +62,7 @@ const User = ({ showImage, setShowImage, setImage }) => {
                                 )}
                             </div>
                         </div>
-                        <div className="w-full p-4 bg-black-200 rounded-sm flex flex-col gap-4">
+                        <div className="w-full p-4 bg-black-200 rounded-lg flex flex-col gap-4">
                             <div className="w-full flex gap-2 text-sm items-center">
                                 <div className="text-gray-400">
                                     <EnvelopeOpen size={24} weight="fill" />
@@ -77,47 +81,31 @@ const User = ({ showImage, setShowImage, setImage }) => {
                                 </div>
                                 <div className="text-gray-200">{user?.data[0]?.sex ? user?.data[0]?.sex : "None"}</div>
                             </div>
+                            <div className="w-full flex gap-2 text-sm items-center">
+                                <div className="text-gray-400">
+                                    <GraduationCap size={24} weight="fill" />
+                                </div>
+                                <div className="text-gray-200">{user?.data[0]?.education ? user?.data[0]?.education : "None"}</div>
+                            </div>
+                            <div className="w-full flex gap-2 text-sm items-center">
+                                <div className="text-gray-400">
+                                    <Sparkle size={24} weight="fill" />
+                                </div>
+                                <div className="text-gray-200">{user?.data[0]?.habit ? user?.data[0]?.habit : "None"}</div>
+                            </div>
                         </div>
                         <div className="w-full p-4 bg-black-200 flex flex-col gap-4 rounded-md">
                             <div className="w-full text-xl text-gray-200">Thư viện</div>
 
-                            <div className="grid grid-cols-4 gap-4 w-full overflow-y-auto playlistSong" style={{ height: 'calc(50vh)' }}>
-                                <div>
-                                    <img className="h-32 w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image.jpg" alt="" />
-                                </div>
-                                <div>
-                                    <img className="h-32 w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-1.jpg" alt="" />
-                                </div>
-                                <div>
-                                    <img className="h-32 w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-2.jpg" alt="" />
-                                </div>
-                                <div >
-                                    <img className="h-32 w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-3.jpg" alt="" />
-                                </div>
-                                <div >
-                                    <img className="h-32 w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-4.jpg" alt="" />
-                                </div>
-                                <div >
-                                    <img className="h-32 w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-5.jpg" alt="" />
-                                </div>
-                                <div >
-                                    <img className="h-32 w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-6.jpg" alt="" />
-                                </div>
-                                <div >
-                                    <img className="h-32 w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-7.jpg" alt="" />
-                                </div>
-                                <div >
-                                    <img className="h-32 w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-8.jpg" alt="" />
-                                </div>
-                                <div >
-                                    <img className="h-32 w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-9.jpg" alt="" />
-                                </div>
-                                <div >
-                                    <img className="h-32 w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-10.jpg" alt="" />
-                                </div>
-                                <div >
-                                    <img className="h-32 w-full object-cover rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/masonry/image-11.jpg" alt="" />
-                                </div>
+                            <div className="grid grid-cols-4 gap-4 w-full overflow-y-auto playlistSong" style={{ maxHeight: 'calc(50vh)' }}>
+                                {statusList?.data?.map((item) =>
+                                    item.type === 'image' && (
+                                        <div>
+                                            <img className="h-32 w-full object-cover rounded-lg cursor-pointer" src={item.image} alt="" onClick={() => handleShowImage(item)} />
+                                        </div>
+                                    )
+                                )}
+
                             </div>
 
                         </div>
@@ -136,7 +124,7 @@ const User = ({ showImage, setShowImage, setImage }) => {
                 <div className="w-2/3 h-full">
                     {location.pathname.slice(12) === token && (
                         <div className="w-full h-[15%] pb-2">
-                            <div className="w-full h-full bg-black-200 p-4 flex flex-col gap-2">
+                            <div className="w-full h-full bg-black-200 p-4 flex flex-col gap-2 rounded-lg">
                                 <div className="w-full h-1/2 flex items-center gap-4">
                                     <img className="w-10 h-10 rounded-full" src={avatar?.data[0]?.avatar ? avatar?.data[0]?.avatar : images.DefaultAvatar} />
                                     <div className="h-8 bg-gray-400 flex justify-start items-center rounded-full text-gray-200 text-sm px-4 cursor-pointer" style={{ width: 'calc(100% - 48px)' }} onClick={() => setShowStatus(true)}>Bạn đang nghĩ gì?</div>
@@ -160,7 +148,7 @@ const User = ({ showImage, setShowImage, setImage }) => {
                     )}
 
                     <div className={`w-full ${location.pathname.slice(12) === token ? "h-[85%]" : "h-full"} pt-2`}>
-                        <div className="w-full h-full px-4 pt-4 bg-black-200 overflow-y-auto playlistSong">
+                        <div className="w-full h-full px-4 pt-4 bg-black-200 overflow-y-auto rounded-t-lg scroll-smooth playlistSong">
                             <div className="w-full flex flex-col gap-4">
                                 <div className="w-full flex gap-4 items-center">
                                     <Sliders size={24} weight="fill" className="text-gray-400" />

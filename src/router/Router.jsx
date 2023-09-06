@@ -19,6 +19,7 @@ import SearchPage from "../pages/Search/SearchPage";
 import User from "../pages/Community/User";
 import Community from "../pages/Community/Community";
 import DetailImage from "../components/detailImage/DetailImage";
+import ModalInfoSharing from "../components/modalInfoSharing/ModalInfoSharing";
 const Router = () => {
 
     const navigate = useNavigate();

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllStatus, getUserStatus, postImage, postStatus } from "../../redux/slice/Status.slice";
 
 import { XCircle, Image, CircleNotch } from "@phosphor-icons/react";
+import { getUser } from "../../redux/slice/User.slice";
 
 const ModalStatus = ({ show, setShow, avatar, name }) => {
     const dispatch = useDispatch()
@@ -17,6 +18,7 @@ const ModalStatus = ({ show, setShow, avatar, name }) => {
     const [fileImage, setFileImage] = useState()
     const [imageConfirm, setImageConfirm] = useState()
     const [value, setvalue] = useState()
+
 
     useEffect(() => {
         if (fileImage) {
@@ -36,11 +38,6 @@ const ModalStatus = ({ show, setShow, avatar, name }) => {
 
     }, [fileImage])
 
-    // useEffect(() => {
-    //     console.log(statusPost)
-    //     statusPost === 'success' && setShow(false)
-    // }, [statusPost])
-
     const handleChangeValue = (e) => {
         setvalue(e.target.value)
     }
@@ -59,9 +56,9 @@ const ModalStatus = ({ show, setShow, avatar, name }) => {
                 comment: 0,
                 star: 0,
                 share: 0,
-                content: value,
+                content: value.replace(/\n\r?/g, '<br/>'),
                 image: `https://192.168.137.1:3114/image/other/${token}_${encodeURI(fileImage.name.split(" ").join(""))}`,
-                imageContent: value,
+                imageContent: value.replace(/\n\r?/g, '<br/>'),
                 type: 'image'
             }))
             await dispatch(postImage({ tokenId: token, formData }))
@@ -80,8 +77,8 @@ const ModalStatus = ({ show, setShow, avatar, name }) => {
                 star: 0,
                 share: 0,
                 image: "none",
-                content: value,
-                imageContent: value,
+                content: value.replace(/\n\r?/g, '<br/>'),
+                imageContent: value.replace(/\n\r?/g, '<br/>'),
                 type: 'text'
             }))
             await dispatch(getUserStatus({ tokenId: token }))
@@ -133,6 +130,7 @@ const ModalStatus = ({ show, setShow, avatar, name }) => {
                                 </div>
                             </div>
                         )}
+
 
 
                     </div>

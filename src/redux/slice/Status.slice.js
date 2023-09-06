@@ -18,9 +18,44 @@ export const getUserStatus = createAsyncThunk('getUserStatus', async (data) => {
     }
 })
 
+export const getAllStarListByUser = createAsyncThunk('getAllStarListByUser', async (data) => {
+    const { tokenId } = data
+    try {
+
+        const getAll = await statusController.getAllStarListByUser(tokenId)
+        return getAll;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+export const getAllCommentLikeList = createAsyncThunk('getAllCommentLikeList', async (data) => {
+    const { link } = data
+    try {
+
+        const getAll = await statusController.getAllCommentListLike(link);
+        return getAll;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
 export const getAllStatus = createAsyncThunk('getAllStatus', async () => {
     try {
         const getAll = await statusController.getAllStatus()
+        return getAll;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+export const getAllComment = createAsyncThunk('getAllComment', async (data) => {
+    const { link } = data;
+    try {
+        const getAll = await statusController.getAllComment(link)
         return getAll;
     }
     catch (error) {
@@ -45,6 +80,17 @@ export const postStatus = createAsyncThunk('postStatus', async (data) => {
     try {
         const postStt = statusController.postStatus(tokenId, like, comment, star, share, content, image, imageContent, type)
         return postStt;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+export const removeStatus = createAsyncThunk('removeStatus', async (data) => {
+    const { link } = data;
+    try {
+        const removeStt = statusController.removeStatus(link)
+        return removeStt;
     }
     catch (error) {
         return error;
@@ -95,6 +141,72 @@ export const userLikeList = createAsyncThunk('userLikeList', async (data) => {
     }
 })
 
+export const commentStatus = createAsyncThunk('commentStatus', async (data) => {
+    const { link, ownerId, userComment, content } = data;
+    try {
+        const comment = statusController.postComment(link, ownerId, userComment, content)
+        return comment;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+export const removeCommentStatus = createAsyncThunk('removeCommentStatus', async (data) => {
+    const { link, tokenId } = data;
+    try {
+        const unCmt = statusController.removeComment(link, tokenId)
+        return unCmt;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+export const likeComment = createAsyncThunk('likeComment', async (data) => {
+    const { link, commentId, owner, userLike } = data;
+    try {
+        const likeCmt = statusController.likeComment(link, commentId, owner, userLike)
+        return likeCmt;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+export const unLikeComment = createAsyncThunk('unLikeComment', async (data) => {
+    const { link, commentId, userLike } = data;
+    try {
+        const unLikeCmt = statusController.removeLikeComment(link, commentId, userLike)
+        return unLikeCmt;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+export const addStarItem = createAsyncThunk('addStarItem', async (data) => {
+    const { link, tokenId, ownerId } = data;
+    try {
+        const add = statusController.addStarItem(link, tokenId, ownerId)
+        return add;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+export const removeStarItem = createAsyncThunk('removeStarItem', async (data) => {
+    const { link, tokenId } = data;
+    try {
+        const remove = statusController.removeStarItem(link, tokenId)
+        return remove;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
 export const statusSlice = createSlice({
     name: 'status',
     initialState,
@@ -108,6 +220,39 @@ export const statusSlice = createSlice({
             state.allStatus = action.payload
         })
         builder.addCase(getAllStatus.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(getAllStarListByUser.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(getAllStarListByUser.fulfilled, (state, action) => {
+            state.status = 'success';
+            state.allStarList = action.payload
+        })
+        builder.addCase(getAllStarListByUser.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(getAllCommentLikeList.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(getAllCommentLikeList.fulfilled, (state, action) => {
+            state.status = 'success';
+            state.allCommentLikeList = action.payload
+        })
+        builder.addCase(getAllCommentLikeList.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(getAllComment.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(getAllComment.fulfilled, (state, action) => {
+            state.status = 'success';
+            state.allComment = action.payload
+        })
+        builder.addCase(getAllComment.rejected, (state) => {
             state.status = 'failed'
         })
 
@@ -142,6 +287,16 @@ export const statusSlice = createSlice({
             state.status = 'success';
         })
         builder.addCase(postStatus.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(removeStatus.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(removeStatus.fulfilled, (state, action) => {
+            state.status = 'success';
+        })
+        builder.addCase(removeStatus.rejected, (state) => {
             state.status = 'failed'
         })
 
@@ -183,6 +338,66 @@ export const statusSlice = createSlice({
             state.userLikeList = action.payload
         })
         builder.addCase(userLikeList.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(commentStatus.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(commentStatus.fulfilled, (state, action) => {
+            state.status = 'success';
+        })
+        builder.addCase(commentStatus.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(removeCommentStatus.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(removeCommentStatus.fulfilled, (state, action) => {
+            state.status = 'success';
+        })
+        builder.addCase(removeCommentStatus.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(likeComment.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(likeComment.fulfilled, (state, action) => {
+            state.status = 'success';
+        })
+        builder.addCase(likeComment.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(unLikeComment.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(unLikeComment.fulfilled, (state, action) => {
+            state.status = 'success';
+        })
+        builder.addCase(unLikeComment.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(addStarItem.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(addStarItem.fulfilled, (state, action) => {
+            state.status = 'success';
+        })
+        builder.addCase(addStarItem.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(removeStarItem.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(removeStarItem.fulfilled, (state, action) => {
+            state.status = 'success';
+        })
+        builder.addCase(removeStarItem.rejected, (state) => {
             state.status = 'failed'
         })
 
