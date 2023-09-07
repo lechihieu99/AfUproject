@@ -1,9 +1,9 @@
 import React from "react";
-import { ThumbsUp, ChatTeardropDots, Star, ShareFat } from "@phosphor-icons/react";
+import { ThumbsUp, ChatTeardropDots, Star, ShareFat, Article } from "@phosphor-icons/react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Parser } from "html-to-react";
 
 import { addStarItem, commentStatus, getAllComment, getAllCommentLikeList, getAllStarListByUser, getAllStatus, getUserStatus, isExistInLikeList, likeComment, likeStatus, removeStarItem, unLikeComment, unLikeStatus, userLikeList } from "../../redux/slice/Status.slice";
@@ -19,6 +19,7 @@ const ModalDetailStatus = ({ avatar, name, data, show, setShow, showImage, setSh
     const dispatch = useDispatch()
     const token = Cookies.get('tokenId')
     const location = useLocation()
+    const navigate = useNavigate()
 
     const userLike = useSelector((state) => state.status.userLikeList)
     const user = useSelector((state) => state.user.user)
@@ -217,6 +218,9 @@ const ModalDetailStatus = ({ avatar, name, data, show, setShow, showImage, setSh
                                         <ShareFat size={20} weight="fill" className={`text-gray-400 cursor-pointer`} onClick={handleShare} />
                                         <div className="text-sm text-gray-200">{data?.share}</div>
                                     </div>
+                                    <Link to={`/afuproject/status/${data?.link}`} className="w-full flex gap-2 items-center">
+                                        <Article size={20} weight="fill" className={`text-gray-400 cursor-pointer`} />
+                                    </Link>
                                 </div>
                             </div>
                         </div>

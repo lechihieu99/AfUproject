@@ -5,6 +5,10 @@ const statusController = {
         const url = '/get-all-status'
         return axiosApi.get(url)
     },
+    getStatus(link) {
+        const url = `/get-status/${link}`
+        return axiosApi.get(url)
+    },
     getAllComment(link) {
         const url = `/get-all-comment/${link}`
         return axiosApi.get(url)

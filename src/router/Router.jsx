@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { HashRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
@@ -20,6 +20,12 @@ import User from "../pages/Community/User";
 import Community from "../pages/Community/Community";
 import DetailImage from "../components/detailImage/DetailImage";
 import ModalInfoSharing from "../components/modalInfoSharing/ModalInfoSharing";
+// import DetailStatus from "../pages/DetailStatus/DetailStatus";
+import Loading from "../components/lazyLoad/Loading";
+
+import { lazy } from 'react';
+
+const DetailStatus = lazy(() => import('../pages/DetailStatus/DetailStatus.jsx'));
 const Router = () => {
 
     const navigate = useNavigate();
@@ -65,6 +71,7 @@ const Router = () => {
     return (
 
         <>
+            {/* <Loading /> */}
             <div className="w-full h-screen absolute top-0 left-0">
                 <DetailImage show={showImage} setShow={setShowImage} image={image} />
             </div>
@@ -102,6 +109,12 @@ const Router = () => {
 
                             <Route path="afuproject/community" element={<Layout element={<Community showImage={showImage} setShowImage={setShowImage} setImage={setImage} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
                             <Route path="afuproject/:id" element={<Layout element={<User showImage={showImage} setShowImage={setShowImage} setImage={setImage} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
+                            <Route path="afuproject/status/:id" element={<Layout element={
+                                <Suspense fallback={<Loading />}>
+                                    <DetailStatus showImage={showImage} setShowImage={setShowImage} setImage={setImage} />
+                                </Suspense>
+                            } setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
+
                         </Route>
                     </Routes>
                 )

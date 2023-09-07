@@ -102,6 +102,8 @@ const Status = ({ avatar, name, data, showImage, setShowImage, setImage, type, s
         setShowDropdown(false)
     }
 
+
+
     const handleStarItem = async () => {
         if (clickStar) {
             await dispatch(removeStarItem({

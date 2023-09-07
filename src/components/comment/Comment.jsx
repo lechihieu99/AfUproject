@@ -73,7 +73,7 @@ const Comment = ({ data, show }) => {
                 <img src={data?.avatar} className="w-10 h-10 rounded-full" />
                 <div className="flex flex-col gap-2" style={{ width: 'calc(100% - 48px)' }}>
                     <div className="text-sm font-semibold text-gray-200">{data?.name}</div>
-                    <div className="flex text-sm bg-white-200 p-2 rounded-lg items-center max-w-full ">{htmlParser.parse(data?.content)}</div>
+                    <div className="flex text-sm text-gray-200 bg-white-200 p-2 rounded-lg items-center max-w-full ">{htmlParser.parse(data?.content)}</div>
                     <div className="w-fit flex gap-4 items-center bg-white-200 rounded-full cursor-pointer" onClick={() => handleLikeComment(data)}>
                         <div className="flex gap-2 items-center px-2">
                             <ThumbsUp size={16} weight="fill" className={`${likeCmt ? "text-pink-velvet" : "text-gray-200"}`} />

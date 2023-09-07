@@ -18,6 +18,18 @@ export const getUserStatus = createAsyncThunk('getUserStatus', async (data) => {
     }
 })
 
+export const getStatus = createAsyncThunk('getStatus', async (data) => {
+    const { link } = data
+    try {
+
+        const getAll = await statusController.getStatus(link)
+        return getAll;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
 export const getAllStarListByUser = createAsyncThunk('getAllStarListByUser', async (data) => {
     const { tokenId } = data
     try {
@@ -220,6 +232,17 @@ export const statusSlice = createSlice({
             state.allStatus = action.payload
         })
         builder.addCase(getAllStatus.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(getStatus.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(getStatus.fulfilled, (state, action) => {
+            state.status = 'success';
+            state.statusData = action.payload
+        })
+        builder.addCase(getStatus.rejected, (state) => {
             state.status = 'failed'
         })
 
