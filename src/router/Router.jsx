@@ -16,16 +16,19 @@ import MusicPage from "../pages/Music/Music";
 import PlaylistPage from "../pages/Music/PlaylistPage";
 import TrackPage from "../pages/Music/TrackPage";
 import SearchPage from "../pages/Search/SearchPage";
-import User from "../pages/Community/User";
 import Community from "../pages/Community/Community";
 import DetailImage from "../components/detailImage/DetailImage";
 import ModalInfoSharing from "../components/modalInfoSharing/ModalInfoSharing";
 // import DetailStatus from "../pages/DetailStatus/DetailStatus";
 import Loading from "../components/lazyLoad/Loading";
+import '../components/modalEditUser/style.css'
 
 import { lazy } from 'react';
 
 const DetailStatus = lazy(() => import('../pages/DetailStatus/DetailStatus.jsx'));
+const User = lazy(() => import('../pages/Community/User.jsx'))
+
+
 const Router = () => {
 
     const navigate = useNavigate();
@@ -108,7 +111,11 @@ const Router = () => {
                             <Route path="afuproject/music/favourite/:id" element={<Layout element={<FavouritePage isPlaying={isPlaying} setIsPlaying={setIsPlaying} playingList={playingList} setPlayingList={setPlayingList} selectedId={selectedId} setSelectedId={setSelectedId} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
 
                             <Route path="afuproject/community" element={<Layout element={<Community showImage={showImage} setShowImage={setShowImage} setImage={setImage} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
-                            <Route path="afuproject/:id" element={<Layout element={<User showImage={showImage} setShowImage={setShowImage} setImage={setImage} />} setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
+                            <Route path="afuproject/:id" element={<Layout element={
+                                <Suspense fallback={<Loading />}>
+                                    <User showImage={showImage} setShowImage={setShowImage} setImage={setImage} />
+                                </Suspense>
+                            } setSelectedId={setSelectedId} setIsPlaying={setIsPlaying} />} />
                             <Route path="afuproject/status/:id" element={<Layout element={
                                 <Suspense fallback={<Loading />}>
                                     <DetailStatus showImage={showImage} setShowImage={setShowImage} setImage={setImage} />

@@ -8,6 +8,7 @@ import { Carousel, Tooltip } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { Heart, Play, Pause, Article, ArrowRight } from "@phosphor-icons/react";
 import Cookies from "js-cookie";
+import axiosApi from "../../redux/controller/Axios.api";
 const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selectedId, setSelectedId }) => {
 
     const dispatch = useDispatch()
@@ -38,6 +39,11 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
     const [arrayIdx2, setArrayIdx2] = useState([]);
 
     useEffect(() => {
+        dispatch(getHome())
+        dispatch(getChart())
+    }, [])
+
+    useEffect(() => {
         dispatch(getFavouriteList({ id: token }))
     }, [statusFav, statusRemove])
 
@@ -57,11 +63,6 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
     useEffect(() => {
         array && array.streamingStatus !== 2 && setPlayingList({ playlist: result, item: array }) && setIsPlaying(true)
     }, [array, result])
-
-    useEffect(() => {
-        dispatch(getHome())
-        dispatch(getChart())
-    }, [])
 
     useEffect(() => {
         if (chart) setCheck(true)
@@ -228,8 +229,8 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
     // useEffect(() => {
     //     console.log('home')
     //     console.log(home)
-    //     console.log('chart')
-    //     console.log(chart)
+    //     // console.log('chart')
+    //     // console.log(chart)
     // }, [home, chart])
     return (
         <>

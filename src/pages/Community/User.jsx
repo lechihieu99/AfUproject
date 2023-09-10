@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { EnvelopeOpen, Cake, UserFocus, Image, VideoCamera, Flag, Sliders, GraduationCap, Sparkle } from "@phosphor-icons/react";
+import { EnvelopeOpen, Cake, UserFocus, Image, VideoCamera, Flag, Sliders, GraduationCap, Sparkle, Check, SpinnerGap } from "@phosphor-icons/react";
 
-import { getAvatar, getUser, uploadAvatar } from "../../redux/slice/User.slice";
+import { cancelFriend, getAvatar, getFriend, getUser, sendFriendRequest, uploadAvatar } from "../../redux/slice/User.slice";
 import Status from "./Status";
 import ModalEditUser from "../../components/modalEditUser/ModalEditUser";
 import ModalStatus from "../../components/modalStatus/ModalStatus";
@@ -31,11 +31,17 @@ const User = ({ showImage, setShowImage, setImage }) => {
     const avatar = useSelector((state) => state.user.avatar)
     const user = useSelector((state) => state.user.user)
     const statusList = useSelector((state) => state.status.statusList)
+    const friend = useSelector((state) => state.user.friend)
 
     useEffect(() => {
         dispatch(getUser({ tokenId: location.pathname.slice(12) }))
         dispatch(getUserStatus({ tokenId: location.pathname.slice(12) }))
-    }, [user])
+        dispatch(getFriend({
+            userId1: location.pathname.slice(12),
+            userId2: token
+        }))
+
+    }, [])
 
     useEffect(() => {
         dispatch(getAvatar({ tokenId: location.pathname.slice(12) }))
@@ -46,19 +52,54 @@ const User = ({ showImage, setShowImage, setImage }) => {
         setShowImage(true)
     }
 
+    const handleSendFriendRequest = async () => {
+        await dispatch(sendFriendRequest({
+            userId1: location.pathname.slice(12),
+            userId2: token
+        }))
+        await dispatch(getFriend({
+            userId1: location.pathname.slice(12),
+            userId2: token
+        }))
+    }
+
+    const handleCancelFriend = async () => {
+        await dispatch(cancelFriend({
+            userId1: location.pathname.slice(12),
+            userId2: token
+        }))
+        await dispatch(getFriend({
+            userId1: location.pathname.slice(12),
+            userId2: token
+        }))
+    }
+
     return (
         <>
             <div className="w-full h-full flex gap-4">
                 <div className="w-1/3 h-full overflow-y-auto playlistSong">
                     <div className="w-full flex flex-col gap-4">
                         <div className="w-full bg-black-200 rounded-lg flex items-center gap-4 p-4">
-                            <img className="w-28 h-28 rounded-full cursor-pointer" src={avatar?.data[0]?.avatar ? avatar?.data[0]?.avatar : images.DefaultAvatar} onClick={() => setShowAvatar(true)} />
+                            <img className="w-28 h-28 rounded-full cursor-pointer" src={avatar?.data[0]?.avatar ? avatar?.data[0]?.avatar : images.DefaultAvatar} onClick={() => location.pathname.slice(12) === token && setShowAvatar(true)} />
                             <div className="h-full flex flex-col justify-center">
                                 <div className="text-bold text-2xl text-gray-200">{user?.data[0]?.name}</div>
                                 <div className="text-sm text-gray-400 pb-2">1.3k bạn bè</div>
                                 {location.pathname.slice(12) === token && (
                                     <div className="text-sm rounded-full text-gray-200 bg-blue-velvet py-[2px] px-4 hover:bg-greyblue cursor-pointer" onClick={() => setShow(true)}>Chỉnh sửa trang cá nhân</div>
 
+                                )}
+                                {location.pathname.slice(12) !== token && (friend?.data?.length === 0 || friend === undefined) ? (
+                                    <div className="py-[2px] px-4 bg-greyblue rounded-full text-gray-200 flex justify-center items-center cursor-pointer" onClick={handleSendFriendRequest}>Kết bạn</div>
+                                ) : friend?.data[0]?.isAccepted === '1' ? (
+                                    <div className="py-[2px] px-4 bg-greyblue rounded-full text-gray-200 flex justify-center items-center gap-2 cursor-pointer" onClick={handleCancelFriend}>
+                                        <div>Đợi chấp nhận bạn bè</div>
+                                        <SpinnerGap size={20} />
+                                    </div>
+                                ) : location.pathname.slice(12) !== token && (
+                                    <div className="py-[2px] px-4 bg-pink-velvet rounded-full text-gray-200 flex justify-center items-center gap-2 cursor-pointer" onClick={handleCancelFriend}>
+                                        <div>Bạn bè</div>
+                                        <Check size={20} />
+                                    </div>
                                 )}
                             </div>
                         </div>

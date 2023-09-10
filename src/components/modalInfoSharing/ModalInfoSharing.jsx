@@ -9,7 +9,7 @@ const ModalInfoSharing = ({ show, setShow, statusId }) => {
     const [showCopy, setShowCopy] = useState(false)
 
     useEffect(() => {
-        setLinkStatus(`http://192.168.137.1:3000/afuproject/status/${statusId}`)
+        setLinkStatus(`https://lechihieu99.github.io/afuproject/status/${statusId}`)
     }, [show])
 
     const handleCopyText = () => {

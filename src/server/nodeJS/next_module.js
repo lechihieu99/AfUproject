@@ -51,7 +51,7 @@ var cors = require('cors')
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "binacous1995",
+    password: "yourpassword",
     database: 'music_service'
 });
 

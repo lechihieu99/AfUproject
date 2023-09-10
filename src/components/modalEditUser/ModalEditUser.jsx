@@ -18,7 +18,8 @@ const ModalEditUser = ({ show, setShow }) => {
     const [errorEmail, setErrorEmail] = useState()
 
     useEffect(() => {
-        dispatch(getUser({ tokenId: token }))
+        if (show)
+            dispatch(getUser({ tokenId: token }))
     }, [show])
 
     const onFinish = async () => {

@@ -56,7 +56,8 @@ const ModalDetailStatus = ({ avatar, name, data, show, setShow, showImage, setSh
     }, [show])
 
     useEffect(() => {
-        dispatch(getUser({ tokenId: token }))
+        if (show)
+            dispatch(getUser({ tokenId: token }))
     }, [])
 
     useEffect(() => {

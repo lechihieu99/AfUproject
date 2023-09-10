@@ -13,6 +13,7 @@ import Cookies from "js-cookie";
 import { images } from "../../constants/GetImages";
 import { getUser } from "../../redux/slice/User.slice";
 import Comment from "../../components/comment/Comment";
+import ModalInfoSharing from "../../components/modalInfoSharing/ModalInfoSharing";
 
 const DetailStatus = ({ setImage, setShowImage }) => {
     const dispatch = useDispatch()
@@ -232,7 +233,7 @@ const DetailStatus = ({ setImage, setShowImage }) => {
                                     <div className="w-full text-gray-200">{statusData?.data[0]?.imageContent !== undefined && htmlParser.parse(statusData?.data[0]?.imageContent)}</div>
                                 )}
                                 {statusData?.data[0]?.type === 'image' && (
-                                    <div className="w-full bg-black-200 flex justify-center items-center overflow-hidden cursor-pointer" style={{ maxHeight: '60vh' }}>
+                                    <div className="w-full bg-black-200 flex justify-center items-center overflow-hidden cursor-pointer" style={{ maxHeight: '80vh' }}>
 
                                         <img src={statusData?.data[0]?.image} className="object-contain" onClick={handleShowImage} />
 
@@ -272,6 +273,7 @@ const DetailStatus = ({ setImage, setShowImage }) => {
                 </div>
 
             </div>
+            <ModalInfoSharing show={showShare} setShow={setShowShare} statusId={statusId} />
         </>
     )
 }
