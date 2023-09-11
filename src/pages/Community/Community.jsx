@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import React, { useEffect } from "react";
 import { Link } from 'react-router-dom'
-import { MagnifyingGlass, Image, VideoCamera, Flag, X, Check } from "@phosphor-icons/react";
+import { MagnifyingGlass, Image, VideoCamera, Flag, X, Check, ChatCenteredDots, BellRinging } from "@phosphor-icons/react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from 'flowbite-react';
 
@@ -136,8 +136,24 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                                 </button>
                             )}
                         </div>
+                        <div className="w-full grid grid-cols-2 mt-4 rounded-lg overflow-hidden divide-x-[1px]">
+                            <div className="w-full flex justify-center items-center gap-2 bg-black-200 hover:bg-white-200 py-2 cursor-pointer" onClick={() => setShowNotFound(true)}>
+                                <ChatCenteredDots size={20} weight="fill" className="text-blue-400" />
+                                <div className="text-sm text-gray-200">Tin nhắn</div>
+
+                            </div>
+                            <div className="w-full flex justify-center items-center gap-2 bg-black-200 hover:bg-white-200 py-2 cursor-pointer" onClick={() => setShowNotFound(true)}>
+                                <BellRinging size={20} weight="fill" className="text-gray-400" />
+                                <div className="text-sm text-gray-200">Thông báo</div>
+
+                            </div>
+                        </div>
                         <div className="w-full pt-4">
                             <div className="w-full text-gray-200 font-semibold">Phím tắt</div>
+                            <div className="w-full flex flex-col gap-2 p-2 text-gray-200 rounded-lg">
+                                <div className="w-full rounded-lg text-sm bg-blue-velvet flex justify-center items-center py-2 hover:bg-greyblue cursor-pointer" onClick={() => setShowModalLikeList(true)}>Đã thích</div>
+                                <div className="w-full rounded-lg text-sm bg-blue-velvet flex justify-center items-center py-2 hover:bg-greyblue cursor-pointer" onClick={() => setShowModalStarList(true)}>Đã lưu</div>
+                            </div>
 
                         </div>
                     </div>
@@ -186,8 +202,8 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                             </Link>
                             {hoverDropdown && (
                                 <div className="absolute top-14 w-full flex flex-col gap-2 p-2 text-gray-200 bg-black-200 border-[1px] border-white-200 rounded-lg">
-                                    <div className="w-full rounded-lg text-sm bg-blue-velvet flex justify-center items-center py-2 hover:bg-greyblue cursor-pointer" onClick={() => setShowModalLikeList(true)}>Đã thích</div>
-                                    <div className="w-full rounded-lg text-sm bg-blue-velvet flex justify-center items-center py-2 hover:bg-greyblue cursor-pointer" onClick={() => setShowModalStarList(true)}>Đã lưu</div>
+                                    {/* <div className="w-full rounded-lg text-sm bg-blue-velvet flex justify-center items-center py-2 hover:bg-greyblue cursor-pointer" onClick={() => setShowModalLikeList(true)}>Đã thích</div>
+                                    <div className="w-full rounded-lg text-sm bg-blue-velvet flex justify-center items-center py-2 hover:bg-greyblue cursor-pointer" onClick={() => setShowModalStarList(true)}>Đã lưu</div> */}
                                 </div>
                             )}
 
