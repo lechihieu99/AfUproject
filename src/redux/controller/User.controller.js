@@ -21,6 +21,10 @@ const userController = {
         const url = `/get-friend?userId1=${userId1}&userId2=${userId2}`
         return axiosApi.get(url)
     },
+    getAllNotification(tokenId) {
+        const url = `/get-all-notification/${tokenId}`
+        return axiosApi.get(url)
+    },
     uploadAvatar(tokenId, formData) {
         const url = `/upload-avatar/${tokenId}`
         return axiosApi.post(url, formData, {
@@ -65,6 +69,33 @@ const userController = {
         const payload = {
             userId1: userId1,
             userId2: userId2
+        }
+        return axiosApi.post(url, payload)
+    },
+    postNotification(sendUser, receiveUser, type, link) {
+        const url = '/post-notification'
+        const payload = {
+            sendUser: sendUser,
+            receiveUser: receiveUser,
+            type: type,
+            link: link
+        }
+        return axiosApi.post(url, payload)
+    },
+    seenNotification(linkNoti) {
+        const url = '/seen-notification'
+        const payload = {
+            id: linkNoti
+        }
+        return axiosApi.post(url, payload)
+    },
+    removeNotification(sendUser, receiveUser, type, link) {
+        const url = '/remove-notification'
+        const payload = {
+            sendUser: sendUser,
+            receiveUser: receiveUser,
+            type: type,
+            link: link
         }
         return axiosApi.post(url, payload)
     }

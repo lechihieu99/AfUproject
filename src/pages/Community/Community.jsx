@@ -1,11 +1,11 @@
 import Cookies from "js-cookie";
 import React, { useEffect } from "react";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { MagnifyingGlass, Image, VideoCamera, Flag, X, Check, ChatCenteredDots, BellRinging } from "@phosphor-icons/react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from 'flowbite-react';
 
-import { acceptFriendRequest, cancelFriend, getAllFriend, getAllFriendRequest, getAllUser, getUser } from "../../redux/slice/User.slice";
+import { acceptFriendRequest, cancelFriend, getAllFriend, getAllFriendRequest, getAllNotification, getAllUser, getUser, seenNotification } from "../../redux/slice/User.slice";
 import Status from "./Status";
 import { getAllStarListByUser, getAllStatus, userLikeList } from "../../redux/slice/Status.slice";
 import ModalStatus from "../../components/modalStatus/ModalStatus";
@@ -20,15 +20,19 @@ import ModalStarList from "../../components/modalStarList/ModalStarList";
 const Community = ({ showImage, setShowImage, setImage }) => {
     const dispatch = useDispatch()
     const token = Cookies.get('tokenId')
+    const navigate = useNavigate()
     const user = useSelector((state) => state.user.user)
     const allStatus = useSelector((state) => state.status.allStatus)
     const userList = useSelector((state) => state.user.userList)
     const friendList = useSelector((state) => state.user.friendList)
     const friendListRequest = useSelector((state) => state.user.friendListRequest)
+    const notiList = useSelector((state) => state.user.notiList)
 
     const [showStatus, setShowStatus] = useState(false)
     const [showNotFound, setShowNotFound] = useState(false)
     const [hoverDropdown, setHoverDropdown] = useState(false)
+    const [clickDropdownMess, setClickDropdownMess] = useState(false)
+    const [clickDropdownNoti, setClickDropdownNoti] = useState(false)
 
     const [likeChange, setLikeChange] = useState(false)
     const [starChange, setStarChange] = useState(false)
@@ -82,6 +86,11 @@ const Community = ({ showImage, setShowImage, setImage }) => {
             setList2(true)
     }, [friendListRequest])
 
+    // 
+    // useEffect(() => {
+    //     dispatch(getAllNotification({ tokenId: token }))
+    // }, [notiList?.data])
+
     const handleSearch = () => {
 
     }
@@ -90,6 +99,18 @@ const Community = ({ showImage, setShowImage, setImage }) => {
         setTimeout(() => {
             setHoverDropdown(false)
         }, 2000)
+    }
+
+    const handleShowDropdownNoti = () => {
+        dispatch(getAllNotification({ tokenId: token }))
+
+        setClickDropdownMess(false)
+        setClickDropdownNoti(!clickDropdownNoti)
+    }
+
+    const handleShowDropdownMess = () => {
+        setClickDropdownNoti(false)
+        setClickDropdownMess(!clickDropdownMess)
     }
 
     const handleCancelFriend = async (item) => {
@@ -108,6 +129,18 @@ const Community = ({ showImage, setShowImage, setImage }) => {
         await dispatch(getAllFriend({ tokenId: token }))
         await dispatch(getAllFriendRequest({ tokenId: token }))
 
+    }
+
+    const handleSeenNotification = async (item) => {
+        if (item.status === '0') {
+            await dispatch(seenNotification({
+                linkNoti: item.id
+            }))
+        }
+
+        if (item.type === 'like' || item.type === 'comment') {
+            await navigate({ pathname: `/afuproject/status/${item.linkStatus}` })
+        }
     }
 
     return (
@@ -136,17 +169,37 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                                 </button>
                             )}
                         </div>
-                        <div className="w-full grid grid-cols-2 mt-4 rounded-lg overflow-hidden divide-x-[1px]">
-                            <div className="w-full flex justify-center items-center gap-2 bg-black-200 hover:bg-white-200 py-2 cursor-pointer" onClick={() => setShowNotFound(true)}>
+                        <div className="w-full grid grid-cols-2 mt-4 rounded-lg divide-x-[1px] ">
+                            <div className="w-full flex justify-center items-center gap-2 bg-black-200 hover:bg-white-200 py-2 rounded-l-lg cursor-pointer" onClick={() => setShowNotFound(true)}>
                                 <ChatCenteredDots size={20} weight="fill" className="text-blue-400" />
                                 <div className="text-sm text-gray-200">Tin nhắn</div>
 
                             </div>
-                            <div className="w-full flex justify-center items-center gap-2 bg-black-200 hover:bg-white-200 py-2 cursor-pointer" onClick={() => setShowNotFound(true)}>
+                            <div className="w-full flex justify-center items-center gap-2 bg-black-200 hover:bg-white-200 py-2 rounded-r-lg cursor-pointer relative" onClick={handleShowDropdownNoti}>
                                 <BellRinging size={20} weight="fill" className="text-gray-400" />
                                 <div className="text-sm text-gray-200">Thông báo</div>
-
+                                {clickDropdownNoti && notiList && (
+                                    <div className="w-[200%] max-h-[50vh] bg-black-200 backdrop-blur-md border-[1px] border-white-200 rounded-lg drop-shadow-lg overflow-y-auto absolute top-10 right-0 p-2">
+                                        {notiList?.data?.map((item) =>
+                                            item.type === 'like' || item.type === 'comment' ? (
+                                                <div className={`w-full p-2 cursor-pointer flex gap-2 rounded-lg items-center ${item.status === '0' ? "bg-white-200" : "bg-black-200"} hover:bg-blue-velvet`} onClick={() => handleSeenNotification(item)}>
+                                                    <img src={item.avatar ? item.avatar : images.DefaultAvatar} className="w-10 h-10 rounded-full" />
+                                                    <div className="text-gray-200 text-sm" style={{ width: 'calc(100% - 56px)' }}>
+                                                        <span className="text-pink-velvet font-semibold">{item.name}</span> vừa {item.type === 'like' && "thích"}{item.type === 'comment' && "bình luận"} bài viết của bạn
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className="w-full p-2 flex">
+                                                    <img src={item.avatar ? item.avatar : images.DefaultAvatar} className="w-10 h-10 rounded-full" />
+                                                    <div className="flex text-gray-200" style={{ width: 'calc(100% - 56px)' }}>
+                                                        <span className="text-pink-velvet">{item.name}</span> vừa gửi lời mời kết bạn
+                                                    </div>
+                                                </div>
+                                            ))}
+                                    </div>
+                                )}
                             </div>
+
                         </div>
                         <div className="w-full pt-4">
                             <div className="w-full text-gray-200 font-semibold">Phím tắt</div>

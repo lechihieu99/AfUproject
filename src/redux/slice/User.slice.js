@@ -61,6 +61,17 @@ export const getFriend = createAsyncThunk('getFriend', async (data) => {
     }
 })
 
+export const getAllNotification = createAsyncThunk('getAllNotification', async (data) => {
+    const { tokenId } = data;
+    try {
+        const getAll = userController.getAllNotification(tokenId)
+        return getAll;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
 export const uploadAvatar = createAsyncThunk('uploadAvatar', async (data) => {
     const { tokenId, formData } = data;
     try {
@@ -120,6 +131,39 @@ export const cancelFriend = createAsyncThunk('cancelFriend', async (data) => {
     const { userId1, userId2 } = data;
     try {
         const getAll = userController.cancelFriend(userId1, userId2)
+        return getAll;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+export const postNotification = createAsyncThunk('postNotification', async (data) => {
+    const { sendUser, receiveUser, type, link } = data;
+    try {
+        const postAll = userController.postNotification(sendUser, receiveUser, type, link)
+        return postAll;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+export const removeNotification = createAsyncThunk('removeNotification', async (data) => {
+    const { sendUser, receiveUser, type, link } = data;
+    try {
+        const postAll = userController.removeNotification(sendUser, receiveUser, type, link)
+        return postAll;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+export const seenNotification = createAsyncThunk('seenNotification', async (data) => {
+    const { linkNoti } = data;
+    try {
+        const getAll = userController.seenNotification(linkNoti)
         return getAll;
     }
     catch (error) {
@@ -188,6 +232,17 @@ export const userSlice = createSlice({
             state.status = 'failed'
         })
 
+        builder.addCase(getAllNotification.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(getAllNotification.fulfilled, (state, action) => {
+            state.status = 'idle';
+            state.notiList = action.payload;
+        })
+        builder.addCase(getAllNotification.rejected, (state) => {
+            state.status = 'failed'
+        })
+
         builder.addCase(uploadAvatar.pending, (state) => {
             state.statusUpload = 'loading';
         })
@@ -246,6 +301,36 @@ export const userSlice = createSlice({
             state.status = 'success';
         })
         builder.addCase(cancelFriend.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(postNotification.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(postNotification.fulfilled, (state, action) => {
+            state.status = 'success';
+        })
+        builder.addCase(postNotification.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(seenNotification.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(seenNotification.fulfilled, (state, action) => {
+            state.status = 'success';
+        })
+        builder.addCase(seenNotification.rejected, (state) => {
+            state.status = 'failed'
+        })
+
+        builder.addCase(removeNotification.pending, (state) => {
+            state.status = 'loading';
+        })
+        builder.addCase(removeNotification.fulfilled, (state, action) => {
+            state.status = 'success';
+        })
+        builder.addCase(removeNotification.rejected, (state) => {
             state.status = 'failed'
         })
     }

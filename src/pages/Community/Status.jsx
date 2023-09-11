@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom'
 
 import { Parser } from "html-to-react";
 import ModalInfoSharing from "../../components/modalInfoSharing/ModalInfoSharing";
+import { getAllNotification, postNotification, removeNotification } from "../../redux/slice/User.slice";
 
 const Status = ({ avatar, name, data, showImage, setShowImage, setImage, type, setLikeChange, setStarChange }) => {
     const dispatch = useDispatch()
@@ -79,8 +80,21 @@ const Status = ({ avatar, name, data, showImage, setShowImage, setImage, type, s
 
             if (type === 'all')
                 await dispatch(getAllStatus())
+
+            if (data?.userId !== token) {
+                await dispatch(removeNotification({
+                    sendUser: token,
+                    receiveUser: data?.userId,
+                    type: 'like',
+                    link: item
+                }))
+            }
+
             setClickLike(false)
             setLikeChange(false)
+
+            await dispatch(getAllNotification({ tokenId: token }))
+
         }
         else {
             await dispatch(likeStatus({ tokenId: token, link: item }))
@@ -88,8 +102,21 @@ const Status = ({ avatar, name, data, showImage, setShowImage, setImage, type, s
 
             if (type === 'all')
                 await dispatch(getAllStatus())
+
+            if (data?.userId !== token) {
+                await dispatch(postNotification({
+                    sendUser: token,
+                    receiveUser: data?.userId,
+                    type: 'like',
+                    link: item
+                }))
+            }
+
             setClickLike(true)
             setLikeChange(true)
+
+            await dispatch(getAllNotification({ tokenId: token }))
+
         }
     }
 
