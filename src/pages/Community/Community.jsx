@@ -147,7 +147,7 @@ const Community = ({ showImage, setShowImage, setImage }) => {
         <>
             <div className="w-full h-full flex">
                 {/* <Link to={`/afuproject/${token}`} className="p-4 bg-gray-200">Trang ca nhan</Link> */}
-                <div className="w-1/4 h-full pr-2">
+                <div className="w-1/4 hidden sm:block h-full pr-2">
                     <div className="w-full h-full bg-black-200 p-4 rounded-t-md">
                         <div className="w-full relative">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -171,7 +171,7 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                         </div>
                         <div className="w-full grid grid-cols-2 mt-4 rounded-lg divide-x-[1px] ">
                             <div className="w-full flex justify-center items-center gap-2 bg-black-200 hover:bg-white-200 py-2 rounded-l-lg cursor-pointer" onClick={() => setShowNotFound(true)}>
-                                <ChatCenteredDots size={20} weight="fill" className="text-blue-400" />
+                                <div className="w-fit"><ChatCenteredDots size={20} weight="fill" className="text-blue-400" /></div>
                                 <div className="text-sm text-gray-200">Tin nhắn</div>
 
                             </div>
@@ -212,7 +212,7 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                     </div>
 
                 </div>
-                <div className="w-1/2 h-full px-2">
+                <div className="w-full sm:w-1/2 h-full px-2">
                     <div className="w-full h-full bg-black-200 overflow-y-auto rounded-t-md playlistSong">
                         <div className="w-full p-4 flex flex-col gap-2 z-20 sticky top-0 bg-black-200 backdrop-blur-md ">
                             <div className="w-full flex items-center gap-4">
@@ -243,7 +243,7 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                         </div>
                     </div>
                 </div>
-                <div className="w-1/4 h-full pl-2">
+                <div className="w-1/4 hidden sm:block h-full pl-2">
                     <div className="w-full h-full bg-black-200 rounded-t-md p-4">
                         <div className="w-full flex flex-col items-center relative" onMouseEnter={() => setHoverDropdown(true)} onMouseLeave={() => setHoverDropdown(false)}>
                             <Link to={`/afuproject/${token}`} className="w-full flex justify-end py-2 pr-2 pl-4 gap-4 bg-gray-600 rounded-full" id="dropdownHover">

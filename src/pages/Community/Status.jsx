@@ -197,26 +197,26 @@ const Status = ({ avatar, name, data, showImage, setShowImage, setImage, type, s
 
                 </div>
                 <div className="w-full px-4">
-                    <div className="w-full flex">
-                        <div className="w-[15%] flex flex-col items-start justify-start gap-4 p-4" >
-                            <div className="w-full flex gap-2 items-center">
-                                <ThumbsUp size={20} weight="fill" className={`${clickLike ? "text-pink-velvet" : "text-gray-400"} cursor-pointer`} onClick={() => handleLike(data?.link)} />
+                    <div className="w-full flex flex-col sm:flex-row">
+                        <div className="w-full sm:w-[15%] flex sm:flex-col items-start justify-start gap-4 p-4" >
+                            <div className="sm:w-full flex gap-2 items-center">
+                                <div className="w-fit"><ThumbsUp size={20} weight="fill" className={`${clickLike ? "text-pink-velvet" : "text-gray-400"} cursor-pointer`} onClick={() => handleLike(data?.link)} /></div>
                                 <div className="text-sm text-gray-200">{data?.likeNumber}</div>
                             </div>
-                            <div className="w-full flex gap-2 items-center" onClick={() => setShow(true)}>
+                            <div className="sm:w-full flex gap-2 items-center" onClick={() => setShow(true)}>
                                 <ChatTeardropDots size={20} weight="fill" className={`text-blue-400 cursor-pointer`} />
                                 <div className="text-sm text-gray-200">{data?.comment}</div>
                             </div>
-                            <div className="w-full flex gap-2 items-center">
+                            <div className="sm:w-full flex gap-2 items-center">
                                 <Star size={20} weight="fill" className={`${clickStar ? "text-yellow-400" : "text-gray-400"} cursor-pointer`} onClick={handleStarItem} />
                                 <div className="text-sm text-gray-200">{data?.star}</div>
                             </div>
-                            <div className="w-full flex gap-2 items-center">
+                            <div className="sm:w-full flex gap-2 items-center">
                                 <ShareFat size={20} weight="fill" className={`text-gray-400 cursor-pointer`} onClick={handleShare} />
                                 <div className="text-sm text-gray-200">{data?.share}</div>
                             </div>
                         </div>
-                        <div className={`w-[85%] cursor-pointer flex flex-col ${data?.type === 'text' && "pl-4 border-l-[1px] border-white-200"}`} onClick={() => setShow(true)}>
+                        <div className={`w-full sm:w-[85%] cursor-pointer flex flex-col ${data?.type === 'text' && "pl-4 border-l-[1px] border-white-200"}`} onClick={() => setShow(true)}>
                             {data?.imageContent && data?.type === 'image' && (
                                 <div className="w-full text-gray-200">{data?.imageContent !== undefined && htmlParser.parse(data?.imageContent)}</div>
                             )}

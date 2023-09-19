@@ -204,6 +204,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
         }
     }, [dataTop1])
 
+
     useEffect(() => {
         let arr = []
         chart?.data?.data?.RTChart?.items?.map((item, idx) => {
@@ -235,7 +236,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
     return (
         <>
             <div className="w-full h-full sm:overflow-y-auto lg:flex lg:gap-4 sm:playlistSong">
-                <div className="w-full h-full sm:pb-0 lg:w-[70%] lg:h-full bg-black-200 pt-4 px-6 rounded-sm">
+                <div className="w-full h-full pb-14 sm:pb-0 lg:w-[70%] lg:h-full bg-black-200 pt-4 px-6 rounded-sm">
 
                     <div className="w-full flex justify-center items-center gap-2 pb-2 border-b-2 border-white-200">
                         <div className="text-base sm:text-2xl w-1/2 text-gray-200">Music Space</div>
@@ -348,9 +349,9 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                             </div> */}
                             </div>
                             <div id="tooltip-chart" className="mb-4"></div>
-                            <div className="w-full h-72 overflow-y-auto lg:h-auto lg:overflow-y-none">
+                            <div className="w-full h-72 overflow-y-auto scroll-smooth lg:h-auto lg:overflow-y-none">
 
-                                {chart?.data?.data?.RTChart?.items?.map((item, idx) => (
+                                {chart?.data?.data?.RTChart?.items?.map((item, idx) => idx < 50 && (
                                     // <Link to={`/music/track/${item.encodeId}`} className="w-full" >
                                     <div className={`w-full flex hover:bg-greyblue`}>
                                         {idx <= 2 ? (
