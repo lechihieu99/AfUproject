@@ -170,7 +170,7 @@ const SearchPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, sele
                                 <div className="w-full absolute top-24 2xl:top-24 xl:top-32 flex justify-center items-center">
                                     <div className="w-28 h-28 2xl:w-48 2xl:h-48 xl:w-32 xl:h-32 rounded-full border-2 border-gray-200" style={{ backgroundImage: `url(${infoSong?.data?.data?.thumbnailM})`, backgroundSize: 'cover' }}></div>
                                 </div>
-                                <div className="w-full mt-14 2xl:mt-24 xl:mt-20 overflow-y-auto" id="infoScroll" >
+                                <div className="w-full mt-14 2xl:mt-24 xl:mt-20 overflow-y-auto" id="infoScroll" style={{ height: 'calc(100% - 288px)' }} >
                                     <div className="w-full flex flex-col pt-4">
                                         <div className="w-full text-center text-base font-bold text-white">{infoSong?.data?.data?.title}</div>
                                         <div className="w-full text-center text-sm font-semibold text-gray-400">{infoSong?.data?.data?.artistsNames}</div>
