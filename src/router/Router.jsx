@@ -24,6 +24,7 @@ import Loading from "../components/lazyLoad/Loading";
 import '../components/modalEditUser/style.css'
 
 import { lazy } from 'react';
+import axiosApi from "../redux/controller/Axios.api";
 
 const DetailStatus = lazy(() => import('../pages/DetailStatus/DetailStatus.jsx'));
 const User = lazy(() => import('../pages/Community/User.jsx'))
@@ -69,6 +70,13 @@ const Router = () => {
             navigate({ pathname: '/afuproject/' })
         }
     }, [status])
+
+    useEffect(() => {
+        const date = new Date()
+        const payload = { date: date }
+        const url = 'https://192.168.137.1:3114/api/send'
+        axiosApi.post(url, payload)
+    }, [location])
 
 
     return (
