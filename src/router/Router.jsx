@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useRef } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { HashRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
@@ -25,12 +25,18 @@ import '../components/modalEditUser/style.css'
 
 import { lazy } from 'react';
 import axiosApi from "../redux/controller/Axios.api";
+import axios from "axios";
+
+// import socketIOClient from "socket.io-client";
+
+// const host = "https://192.168.137.1:3114";
 
 const DetailStatus = lazy(() => import('../pages/DetailStatus/DetailStatus.jsx'));
 const User = lazy(() => import('../pages/Community/User.jsx'))
 
 
 const Router = () => {
+
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -52,6 +58,13 @@ const Router = () => {
     const token = Cookies.get('tokenId');
     const tokenSlice = useSelector((state) => state.auth.token)
 
+    // const socketRef = useRef();
+
+    // useEffect(() => {
+    //     // socketRef.current = socketIOClient.connect(host)
+
+    // }, []);
+
     useEffect(() => {
         // if ((token === undefined) && location?.pathname !== '/login') {
         //     navigate({ pathname: '/' })
@@ -71,12 +84,12 @@ const Router = () => {
         }
     }, [status])
 
-    useEffect(() => {
-        const date = new Date()
-        const payload = { date: date }
-        const url = 'https://192.168.137.1:3114/api/send'
-        axiosApi.post(url, payload)
-    }, [location])
+    // useEffect(() => {
+    //     const date = new Date()
+    //     const payload = { date: date }
+    //     const url = 'https://192.168.137.1:3114/api/send'
+    //     axiosApi.post(url, payload)
+    // }, [location])
 
 
     return (
