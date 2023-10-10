@@ -228,12 +228,6 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
         setArrayIdx2(arr)
     }, [chart, favouriteList, type])
 
-    useEffect(() => {
-        console.log('home')
-        console.log(home)
-        // console.log('chart')
-        // console.log(chart)
-    }, [home, chart])
     return (
         <>
             <div className="w-full h-full sm:overflow-y-auto lg:flex lg:gap-4 sm:playlistSong">

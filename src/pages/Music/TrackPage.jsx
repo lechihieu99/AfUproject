@@ -41,7 +41,7 @@ const TrackPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
     useEffect(() => {
         dispatch(getInfoSong({ id: location?.pathname?.slice(24) }))
         dispatch(getLyricsSong({ id: location?.pathname?.slice(24) }))
-    }, [location?.pathname?.slice(24)])
+    }, [location?.pathname?.slice(24), document.activeElement])
 
     useEffect(() => {
         dispatch(searchRecommendSong({ key: infoSong?.data?.data?.title }))
