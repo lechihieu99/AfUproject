@@ -296,7 +296,7 @@ const Login = ({ setSelectedId, setIsPlaying }) => {
                 </Modal.Header>
                 <Modal.Body>
                     <div>Vui lòng thực hiện các bước sau để trang web được hoạt động</div>
-                    <div>Bước 1: Truy cập đường link sau: <Link to="https://192.168.137.1:3114/api" target="_blank" className="cursor-pointer text-blue-200">Link</Link></div>
+                    <div>Bước 1: Truy cập đường link sau: <Link to="https://2a8e-14-169-8-253.ngrok-free.app/api" target="_blank" className="cursor-pointer text-blue-200">Link</Link></div>
                     <div>Bước 2: Chấp nhận kết nối: <span className="font-bold">Nâng cao (Advanced)</span> - <span className="font-bold">Tiếp tục truy cập (không an toàn)/Proceed to connection (unsafe)</span></div>
                     <div>Bước 3: Khi nhận được thông báo chấp nhận, quay về trang web và thực hiện đăng nhập</div>
                     <div className="text-red-400">Nếu bạn đã chấp nhận kết nối rồi thì có thể bỏ qua thông báo này</div>

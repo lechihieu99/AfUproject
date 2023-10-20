@@ -40,6 +40,7 @@ export const authSlice = createSlice({
             // state.status = 'idle';
             action.payload.name === 'AxiosError' ? state.status = 'failed' : state.status = 'success';
             state.status === 'success' ? state.token = action.payload.data : state.token = undefined;
+            console.log(action.payload)
             state.status === 'success' && Cookies.set('tokenId', action.payload.data, { expires: 1 })
         });
         builder.addCase(loginAccount.rejected, (state) => {
