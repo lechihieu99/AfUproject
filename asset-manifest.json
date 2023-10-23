@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/afuproject/static/css/main.091dbc41.css",
-    "main.js": "/afuproject/static/js/main.069a309f.js",
+    "main.css": "/afuproject/static/css/main.fd2d8d49.css",
+    "main.js": "/afuproject/static/js/main.9c8ce556.js",
     "static/js/720.86e3ee8f.chunk.js": "/afuproject/static/js/720.86e3ee8f.chunk.js",
-    "static/js/89.56e0678e.chunk.js": "/afuproject/static/js/89.56e0678e.chunk.js",
+    "static/js/89.1f41ad5a.chunk.js": "/afuproject/static/js/89.1f41ad5a.chunk.js",
     "static/js/787.25d88e57.chunk.js": "/afuproject/static/js/787.25d88e57.chunk.js",
     "static/js/218.a9e040d5.chunk.js": "/afuproject/static/js/218.a9e040d5.chunk.js",
     "static/media/slide3.png": "/afuproject/static/media/slide3.a82f7aba5911a49f1e20.png",
@@ -16,15 +16,15 @@
     "static/media/404_NotFound.png": "/afuproject/static/media/404_NotFound.db5030477f3b531951ce.png",
     "static/media/logo.png": "/afuproject/static/media/logo.12854accd4eab18a3584.png",
     "index.html": "/afuproject/index.html",
-    "main.091dbc41.css.map": "/afuproject/static/css/main.091dbc41.css.map",
-    "main.069a309f.js.map": "/afuproject/static/js/main.069a309f.js.map",
+    "main.fd2d8d49.css.map": "/afuproject/static/css/main.fd2d8d49.css.map",
+    "main.9c8ce556.js.map": "/afuproject/static/js/main.9c8ce556.js.map",
     "720.86e3ee8f.chunk.js.map": "/afuproject/static/js/720.86e3ee8f.chunk.js.map",
-    "89.56e0678e.chunk.js.map": "/afuproject/static/js/89.56e0678e.chunk.js.map",
+    "89.1f41ad5a.chunk.js.map": "/afuproject/static/js/89.1f41ad5a.chunk.js.map",
     "787.25d88e57.chunk.js.map": "/afuproject/static/js/787.25d88e57.chunk.js.map",
     "218.a9e040d5.chunk.js.map": "/afuproject/static/js/218.a9e040d5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.091dbc41.css",
-    "static/js/main.069a309f.js"
+    "static/css/main.fd2d8d49.css",
+    "static/js/main.9c8ce556.js"
   ]
 }
