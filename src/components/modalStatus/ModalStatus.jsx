@@ -7,6 +7,9 @@ import { getAllStatus, getUserStatus, postImage, postStatus } from "../../redux/
 
 import { XCircle, Image, CircleNotch } from "@phosphor-icons/react";
 import { getUser } from "../../redux/slice/User.slice";
+import { images } from "../../constants/GetImages";
+
+import { HOST } from "../../constants/Pathname";
 
 const ModalStatus = ({ show, setShow, avatar, name }) => {
     const dispatch = useDispatch()
@@ -57,7 +60,7 @@ const ModalStatus = ({ show, setShow, avatar, name }) => {
                 star: 0,
                 share: 0,
                 content: value.replace(/\n\r?/g, '<br/>'),
-                image: `https://192.168.137.1:3114/image/other/${token}_${encodeURI(fileImage.name.split(" ").join(""))}`,
+                image: `image/other/${token}_${encodeURI(fileImage.name.split(" ").join(""))}`,
                 imageContent: value.replace(/\n\r?/g, '<br/>'),
                 type: 'image'
             }))
@@ -101,7 +104,7 @@ const ModalStatus = ({ show, setShow, avatar, name }) => {
                 <Modal.Body>
                     <div className="w-full">
                         <div className="w-full flex gap-4 pb-2">
-                            <img src={avatar} className="w-10 h-10 rounded-full" />
+                            <img src={avatar ? HOST + avatar : images.DefaultAvatar} className="w-10 h-10 rounded-full" />
                             <div className="text-sm text-gray-200 font-bold flex items-center">{name}</div>
                         </div>
                         {/* <input type="text" className="bg-black-200 border border-gray-300 text-white text-sm rounded-lg focus:ring-white focus:border-none block w-full min-h-[50px] max-h-[40vh] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 placeholder:text-white-200" /> */}

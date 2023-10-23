@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import { MagnifyingGlass, Image, VideoCamera, Flag, X, Check, ChatCenteredDots, BellRinging } from "@phosphor-icons/react";
 import { useDispatch, useSelector } from "react-redux";
-import { Dropdown } from 'flowbite-react';
+import { HOST, API_HOST } from "../../constants/Pathname";
 
 import { acceptFriendRequest, cancelFriend, getAllFriend, getAllFriendRequest, getAllNotification, getAllUser, getUser, seenNotification } from "../../redux/slice/User.slice";
 import Status from "./Status";
@@ -15,6 +15,7 @@ import Modal404 from "../../components/modal404/Modal404";
 import ModalInfoSharing from "../../components/modalInfoSharing/ModalInfoSharing";
 import ModalLikeList from "../../components/modalLikeList/ModalLikeList";
 import ModalStarList from "../../components/modalStarList/ModalStarList";
+import { Tooltip } from "flowbite-react";
 
 
 const Community = ({ showImage, setShowImage, setImage }) => {
@@ -49,15 +50,15 @@ const Community = ({ showImage, setShowImage, setImage }) => {
         dispatch(getAllUser())
         dispatch(getAllFriend({ tokenId: token }))
         dispatch(getAllFriendRequest({ tokenId: token }))
-    }, [])
+    }, [document.activeElement])
 
     useEffect(() => {
         dispatch(userLikeList({ tokenId: token }))
-    }, [likeChange])
+    }, [likeChange, document.activeElement])
 
     useEffect(() => {
         dispatch(getAllStarListByUser({ tokenId: token }))
-    }, [starChange])
+    }, [starChange, document.activeElement])
 
     useEffect(() => {
         let count = 0;
@@ -206,6 +207,18 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                             <div className="w-full flex flex-col gap-2 p-2 text-gray-200 rounded-lg">
                                 <div className="w-full rounded-lg text-sm bg-blue-velvet flex justify-center items-center py-2 hover:bg-greyblue cursor-pointer" onClick={() => setShowModalLikeList(true)}>Đã thích</div>
                                 <div className="w-full rounded-lg text-sm bg-blue-velvet flex justify-center items-center py-2 hover:bg-greyblue cursor-pointer" onClick={() => setShowModalStarList(true)}>Đã lưu</div>
+                                <Link to={API_HOST} target="_blank">
+
+                                    <div className="w-full rounded-lg text-sm bg-blue-velvet flex justify-center items-center py-2 hover:bg-greyblue cursor-pointer">
+                                        <Tooltip
+                                            content="Nhấn Visit Site sau đó quay lại và load lại trang"
+                                            placement="bottom"
+                                        >
+                                            Sửa lỗi
+                                        </Tooltip>
+                                    </div>
+
+                                </Link>
                             </div>
 
                         </div>
@@ -216,7 +229,7 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                     <div className="w-full h-full bg-black-200 overflow-y-auto rounded-t-md playlistSong">
                         <div className="w-full p-4 flex flex-col gap-2 z-20 sticky top-0 bg-black-200 backdrop-blur-md ">
                             <div className="w-full flex items-center gap-4">
-                                <img className="w-10 h-10 rounded-full" src={user?.data[0]?.avatar ? user?.data[0]?.avatar : images.DefaultAvatar} />
+                                <img className="w-10 h-10 rounded-full" src={user?.data[0]?.avatar ? HOST + user?.data[0]?.avatar : images.DefaultAvatar} />
                                 <div className="h-8 bg-gray-400 flex justify-start items-center rounded-full text-gray-200 text-sm px-4 cursor-pointer" style={{ width: 'calc(100% - 48px)' }} onClick={() => setShowStatus(true)}>Bạn đang nghĩ gì?</div>
                             </div>
                             <div className="w-full grid grid-cols-3 gap-4">
@@ -236,7 +249,7 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                         </div>
                         <div className="w-full px-4 flex flex-col gap-4 z-10">
                             {allStatus?.data?.map((item) => (
-                                <Status avatar={item.avatar ? item.avatar : images.DefaultAvatar} name={item.name} data={item} showImage={showImage} setShowImage={setShowImage} setImage={setImage} type="all"
+                                <Status avatar={item.avatar ? HOST + item.avatar : images.DefaultAvatar} name={item.name} data={item} showImage={showImage} setShowImage={setShowImage} setImage={setImage} type="all"
                                     setLikeChange={setLikeChange} setStarChange={setStarChange}
                                 />
                             ))}
@@ -244,14 +257,14 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                     </div>
                 </div>
                 <div className="w-1/4 hidden sm:block h-full pl-2">
-                    <div className="w-full h-full bg-black-200 rounded-t-md p-4">
-                        <div className="w-full flex flex-col items-center relative" onMouseEnter={() => setHoverDropdown(true)} onMouseLeave={() => setHoverDropdown(false)}>
-                            <Link to={`/afuproject/${token}`} className="w-full flex justify-end py-2 pr-2 pl-4 gap-4 bg-gray-600 rounded-full" id="dropdownHover">
+                    <div className="w-full h-full bg-black-200 rounded-t-md p-4 overflow-y-auto playlistSong">
+                        <div className="w-full flex flex-col items-center sticky top-0 left-0">
+                            <Link to={`/afuproject/${token}`} className="w-full flex justify-end py-2 pr-2 pl-4 gap-4 bg-gray-600 rounded-[10px]" id="dropdownHover">
                                 <div className="text-gray-200 text-sm flex flex-col items-end" style={{ width: 'calc(100% - 56px)' }}>
                                     <div className="font-semibold">{user?.data[0]?.name}</div>
                                     <div>{user?.data[0]?.email}</div>
                                 </div>
-                                <img src={user?.data[0]?.avatar ? user?.data[0]?.avatar : images.DefaultAvatar} className="w-10 h-10 rounded-full" />
+                                <img src={user?.data[0]?.avatar ? HOST + user?.data[0]?.avatar : images.DefaultAvatar} className="w-10 h-10 rounded-full" />
                             </Link>
                             {hoverDropdown && (
                                 <div className="absolute top-14 w-full flex flex-col gap-2 p-2 text-gray-200 bg-black-200 border-[1px] border-white-200 rounded-lg">
@@ -266,7 +279,7 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                             <div className="w-full flex flex-col overflow-y-auto max-h-[50vh] playlistSong">
                                 {list2 ? friendListRequest?.data?.map((item) => item.isAccepted === '1' && item.userId1 === token && (
                                     <div className="w-full p-2 flex gap-4 hover:bg-greyblue rounded-lg">
-                                        <img src={item.avatar ? item.avatar : images.DefaultAvatar} className="w-10 h-10 rounded-full" />
+                                        <img src={item.avatar ? HOST + item.avatar : images.DefaultAvatar} className="w-10 h-10 rounded-full" />
                                         <div className="flex flex-col">
                                             <Link to={`/afuproject/${item.userId2}`} target="_blank" className="w-full text-gray-200 text-sm font-semibold">{item.name}</Link>
                                             <p className="w-full text-xs text-gray-400">{item.email}</p>
@@ -293,7 +306,7 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                             <div className="w-full flex flex-col overflow-y-auto max-h-[50vh] playlistSong">
                                 {list ? friendList?.data?.map((item) => item.isAccepted === '0' && user?.data[0]?.email !== item.email && (
                                     <Link to={`/afuproject/${item.userId1 !== token ? item.userId1 : item.userId2}`} target="_blank" className="w-full p-2 flex gap-4 hover:bg-greyblue rounded-lg">
-                                        <img src={item.avatar ? item.avatar : images.DefaultAvatar} className="w-10 h-10 rounded-full" />
+                                        <img src={item.avatar ? HOST + item.avatar : images.DefaultAvatar} className="w-10 h-10 rounded-full" />
                                         <div className="flex flex-col">
                                             <p className="w-full text-gray-200 text-sm font-semibold">{item.name}</p>
                                             <p className="w-full text-xs text-gray-400">{item.email}</p>
@@ -309,7 +322,7 @@ const Community = ({ showImage, setShowImage, setImage }) => {
                             <div className="w-full flex flex-col overflow-y-auto playlistSong">
                                 {userList?.data?.map((item) => (
                                     <Link to={`/afuproject/${item.tokenId}`} target="_blank" className="w-full p-2 flex gap-4 hover:bg-greyblue rounded-lg">
-                                        <img src={item.avatar ? item.avatar : images.DefaultAvatar} className="w-10 h-10 rounded-full" />
+                                        <img src={item.avatar ? HOST + item.avatar : images.DefaultAvatar} className="w-10 h-10 rounded-full" />
                                         <div className="flex flex-col" style={{ width: 'calc(100% - 56px)' }}>
                                             <p className="w-full text-gray-200 text-sm font-semibold">{item.name}</p>
                                             <p className="w-full text-xs text-gray-400">{item.email}</p>

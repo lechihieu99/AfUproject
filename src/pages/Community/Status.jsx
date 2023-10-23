@@ -8,6 +8,7 @@ import { addStarItem, getAllStarListByUser, getAllStatus, getUserStatus, isExist
 import Cookies from "js-cookie";
 import ModalDetailStatus from "../../components/modalDetailStatus/ModalDetailStatus";
 import { Link } from 'react-router-dom'
+import { HOST } from "../../constants/Pathname";
 
 import { Parser } from "html-to-react";
 import ModalInfoSharing from "../../components/modalInfoSharing/ModalInfoSharing";
@@ -223,7 +224,7 @@ const Status = ({ avatar, name, data, showImage, setShowImage, setImage, type, s
                             {data?.type === 'image' && (
                                 <div className="w-full bg-black-200 flex justify-center items-center overflow-hidden cursor-pointer" style={{ maxHeight: '60vh' }}>
 
-                                    <img src={data?.image} className="object-contain" />
+                                    <img src={HOST + data?.image} className="object-contain" />
 
                                 </div>
                             )}

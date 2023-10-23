@@ -9,6 +9,7 @@ import ModalSignIn from "../../components/modalSignUp/ModalSignUp";
 import { images } from "../../constants/GetImages";
 import { loginAccount, signinAccount } from "../../redux/slice/Auth.slice";
 import { Link, useNavigate } from "react-router-dom";
+import { API_HOST } from "../../constants/Pathname";
 
 import { Eye, EyeSlash } from '@phosphor-icons/react'
 
@@ -233,7 +234,7 @@ const Login = ({ setSelectedId, setIsPlaying }) => {
                             </div>
                         </div>
                         <button onClick={onFinish} className="text-white bg-greyblue hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full">{type === 'login' ? "Login" : "Create an account"}</button>
-
+                        <div className="text-sm text-yellow-200 italic">Trang web đã fix lại lại máy chủ, người dùng có thể đăng ký/đăng nhập bình thường. Trân trọng!</div>
                     </div>
 
                 </div>
@@ -295,9 +296,10 @@ const Login = ({ setSelectedId, setIsPlaying }) => {
                     Warning
                 </Modal.Header>
                 <Modal.Body>
+                    {/* <div>Trang web đã fix lại lại máy chủ, người dùng có thể đăng ký/đăng nhập bình thường. Trân trọng!</div> */}
                     <div>Vui lòng thực hiện các bước sau để trang web được hoạt động</div>
-                    <div>Bước 1: Truy cập đường link sau: <Link to="https://2a8e-14-169-8-253.ngrok-free.app/api" target="_blank" className="cursor-pointer text-blue-200">Link</Link></div>
-                    <div>Bước 2: Chấp nhận kết nối: <span className="font-bold">Nâng cao (Advanced)</span> - <span className="font-bold">Tiếp tục truy cập (không an toàn)/Proceed to connection (unsafe)</span></div>
+                    <div>Bước 1: Truy cập đường link sau: <Link to={`${API_HOST}`} target="_blank" className="cursor-pointer text-blue-400">Link</Link></div>
+                    <div>Bước 2: Chấp nhận kết nối: <span className="font-bold">Visit Site</span></div>
                     <div>Bước 3: Khi nhận được thông báo chấp nhận, quay về trang web và thực hiện đăng nhập</div>
                     <div className="text-red-400">Nếu bạn đã chấp nhận kết nối rồi thì có thể bỏ qua thông báo này</div>
                 </Modal.Body>

@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { EnvelopeOpen, Cake, UserFocus, Image, VideoCamera, Flag, Sliders, GraduationCap, Sparkle, Check, SpinnerGap } from "@phosphor-icons/react";
 
+import { HOST } from "../../constants/Pathname";
 import { cancelFriend, getAvatar, getFriend, getUser, sendFriendRequest, uploadAvatar } from "../../redux/slice/User.slice";
 import Status from "./Status";
 import ModalEditUser from "../../components/modalEditUser/ModalEditUser";
@@ -80,7 +81,7 @@ const User = ({ showImage, setShowImage, setImage }) => {
                 <div className="w-1/3 h-full overflow-y-auto playlistSong">
                     <div className="w-full flex flex-col gap-4">
                         <div className="w-full bg-black-200 rounded-lg flex items-center gap-4 p-4">
-                            <img className="w-28 h-28 rounded-full cursor-pointer" src={avatar?.data[0]?.avatar ? avatar?.data[0]?.avatar : images.DefaultAvatar} onClick={() => location.pathname.slice(12) === token && setShowAvatar(true)} />
+                            <img className="w-28 h-28 rounded-full cursor-pointer" src={avatar?.data[0]?.avatar ? `${HOST}${avatar?.data[0]?.avatar}` : images.DefaultAvatar} onClick={() => location.pathname.slice(12) === token && setShowAvatar(true)} />
                             <div className="h-full flex flex-col justify-center">
                                 <div className="text-bold text-2xl text-gray-200">{user?.data[0]?.name}</div>
                                 <div className="text-sm text-gray-400 pb-2">1.3k bạn bè</div>

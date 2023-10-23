@@ -6,6 +6,8 @@ import { ThumbsUp, ChatTeardropDots, Star, ShareFat, DotsThreeOutlineVertical } 
 import { Parser } from "html-to-react";
 import Cookies from "js-cookie";
 import { getAllStarListByUser } from "../../redux/slice/Status.slice";
+import { HOST } from "../../constants/Pathname";
+import { images } from "../../constants/GetImages";
 
 const ModalStarList = ({ show, setShow }) => {
     const dispatch = useDispatch()
@@ -27,7 +29,7 @@ const ModalStarList = ({ show, setShow }) => {
                 {allStarList?.data?.map((item) => (
                     <Link to={`/afuproject/status/${item.linkStatus}`} target="_blank" className="w-full flex flex-col gap-2 border-b-[1px] border-white-200 py-4">
                         <div className="w-full flex gap-4 relative z-10">
-                            <img src={item.avatar} className="w-10 h-10 rounded-full" />
+                            <img src={item.avatar ? HOST + item.avatar : images.DefaultAvatar} className="w-10 h-10 rounded-full" />
                             <Link to={`/afuproject/${item.userId}`} className="text-gray-200 font-bold flex items-center">{item.name}</Link>
                             {/* {item.userId === token && (
                         <div className="absolute top-2 right-2">
@@ -77,7 +79,7 @@ const ModalStarList = ({ show, setShow }) => {
                                     {item.type === 'image' && (
                                         <div className="w-full bg-black-200 flex justify-center items-center overflow-hidden cursor-pointer" style={{ maxHeight: '60vh' }}>
 
-                                            <img src={item.image} className="object-contain" />
+                                            <img src={HOST + item.image} className="object-contain" />
 
                                         </div>
                                     )}

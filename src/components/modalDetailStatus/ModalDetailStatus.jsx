@@ -13,6 +13,7 @@ import { images } from "../../constants/GetImages";
 import { getUser } from "../../redux/slice/User.slice";
 import Comment from "../comment/Comment";
 import ModalInfoSharing from "../modalInfoSharing/ModalInfoSharing";
+import { HOST } from "../../constants/Pathname";
 
 
 const ModalDetailStatus = ({ avatar, name, data, show, setShow, showImage, setShowImage, setImage, isLoad }) => {
@@ -194,7 +195,7 @@ const ModalDetailStatus = ({ avatar, name, data, show, setShow, showImage, setSh
                                     {data?.type === 'image' && (
                                         <div className="w-full bg-black-200 flex justify-center items-center overflow-hidden cursor-pointer" style={{ maxHeight: '60vh' }} onClick={handleShowImage}>
 
-                                            <img src={data?.image} className="object-contain" />
+                                            <img src={HOST + data?.image} className="object-contain" />
 
                                         </div>
                                     )}
