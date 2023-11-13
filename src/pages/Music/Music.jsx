@@ -62,10 +62,6 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
     }, [array])
 
     useEffect(() => {
-        console.log(home)
-    }, [home])
-
-    useEffect(() => {
         array && array.streamingStatus !== 2 && setPlayingList({ playlist: result, item: array }) && setIsPlaying(true)
     }, [array, result])
 
