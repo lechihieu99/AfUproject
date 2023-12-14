@@ -245,7 +245,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                         <div className="w-full sm:py-4 2xl:h-80 sm:h-72 flex flex-col sm:flex-row">
                             <div className="w-full sm:w-1/2 h-56 sm:h-full sm:pr-2">
                                 <Carousel>
-                                    {home?.data?.data?.items[1]?.items?.map((item) =>
+                                    {home?.data?.data?.items[home?.data?.data?.items[0]?.sectionType === "banner" ? 0 : 1]?.items?.map((item) =>
                                         item.type === 1 ? (
                                             <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full">
                                                 <img
@@ -418,7 +418,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                                     <h1 className="w-full xl:text-2xl lg:text-xl font-bold text-white ">Chill cùng AfU</h1>
                                     <p className="w-full px-8 py-4 text-xs lg:hidden xl:text-base 2xl:text-base flex justify-center items-center font-normal text-gray-400">Hãy cùng tận hưởng những playlist với hơi hướng thư giãn và làm dịu tâm hồn nào.</p>
                                     <div className="flex flex-wrap w-full">
-                                        {home?.data?.data?.items[4]?.items?.map((item, idx) => idx <= 3 && (
+                                        {home?.data?.data?.items[home?.data?.data?.items[3]?.title === "Chill" ? 3 : 4]?.items?.map((item, idx) => idx <= 3 && (
                                             <div className="w-full xl:w-1/2 h-14 p-2"  >
                                                 <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full h-full p-2 rounded-sm flex justify-center items-center text-white 2xl:text-base xl:text-sm lg:text-xs" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover', textShadow: '1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black' }}>
                                                     {item.title}
@@ -438,7 +438,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                             <div className="w-full lg:text-xl xl:text-2xl font-semibold text-white mt-4">Mới phát hành</div>
                             <div className="w-full h-72 sm:h-[40%] overflow-y-auto py-2 border-b-[1px] border-white-200">
                                 <div className="w-full">
-                                    {home?.data?.data?.items[3]?.items?.all?.map((item) => (
+                                    {home?.data?.data?.items[home?.data?.data?.items[2]?.sectionType === "new-release" ? 2 : 3]?.items?.all?.map((item) => (
                                         <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full flex hover:bg-greyblue">
                                             <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                             <div className="w-[65%] xl:w-[80%] flex flex-col pl-2 justify-center">
@@ -456,7 +456,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                             <div className="w-full lg:text-xl xl:text-2xl font-semibold text-white mt-4">Album Hot</div>
                             <div className="w-full h-72 sm:h-[40%] overflow-y-auto py-2 mb-2 border-b-[1px] border-white-200">
                                 <div className="w-full">
-                                    {home?.data?.data?.items[10]?.items?.map((item) => (
+                                    {home?.data?.data?.items[home?.data?.data?.items[0]?.title === "Album Hot" ? 9 : 10]?.items?.map((item) => (
                                         <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full flex hover:bg-greyblue">
                                             <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                             <div className="w-[65%] xl:w-[80%] flex flex-col pl-2 justify-center">
@@ -482,7 +482,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                             <h1 className="w-full 2xl:text-3xl xl:text-2xl lg:text-xl font-bold text-white ">Chill cùng AfU</h1>
                             <p className="w-full px-8 py-4 text-xs lg:hidden xl:text-base 2xl:text-base flex justify-center items-center font-normal text-gray-400">Hãy cùng tận hưởng những playlist với hơi hướng thư giãn và làm dịu tâm hồn nào.</p>
                             <div className="flex flex-wrap w-full">
-                                {home?.data?.data?.items[4]?.items?.map((item, idx) => idx <= 3 && (
+                                {home?.data?.data?.items[home?.data?.data?.items[3]?.title === "Chill" ? 3 : 4]?.items?.map((item, idx) => idx <= 3 && (
                                     <div className="w-full xl:w-1/2 h-14 p-2"  >
                                         <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full h-full p-2 rounded-sm flex justify-center items-center text-white 2xl:text-base xl:text-sm lg:text-xs" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover', textShadow: '1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black' }}>
                                             {item.title}
@@ -502,7 +502,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                     <div className="w-full lg:text-xl xl:text-2xl font-semibold text-white mt-4">Mới phát hành</div>
                     <div className="w-full h-[40%] overflow-y-auto py-2 border-b-[1px] border-white-200 playlistSong">
                         <div className="w-full">
-                            {home?.data?.data?.items[3]?.items?.all?.map((item) => (
+                            {home?.data?.data?.items[home?.data?.data?.items[2]?.sectionType === "new-release" ? 2 : 3]?.items?.all?.map((item) => (
                                 <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full flex hover:bg-greyblue">
                                     <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                     <div className="w-[65%] xl:w-[80%] flex flex-col pl-2 justify-center">
@@ -520,7 +520,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                     <div className="w-full lg:text-xl xl:text-2xl font-semibold text-white mt-4">Album Hot</div>
                     <div className="w-full h-[40%] overflow-y-auto py-2 mb-2 border-b-[1px] border-white-200 playlistSong">
                         <div className="w-full">
-                            {home?.data?.data?.items[10]?.items?.map((item) => (
+                            {home?.data?.data?.items[home?.data?.data?.items[0]?.title === "Album Hot" ? 9 : 10]?.items?.map((item) => (
                                 <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full flex hover:bg-greyblue">
                                     <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                     <div className="w-[65%] xl:w-[80%] flex flex-col pl-2 justify-center">
