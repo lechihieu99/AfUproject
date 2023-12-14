@@ -456,7 +456,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                             <div className="w-full lg:text-xl xl:text-2xl font-semibold text-white mt-4">Album Hot</div>
                             <div className="w-full h-72 sm:h-[40%] overflow-y-auto py-2 mb-2 border-b-[1px] border-white-200">
                                 <div className="w-full">
-                                    {home?.data?.data?.items[home?.data?.data?.items[10]?.title === "Album Hot" ? 9 : 10]?.items?.map((item) => (
+                                    {home?.data?.data?.items[home?.data?.data?.items[9]?.title === "Album Hot" ? 9 : 10]?.items?.map((item) => (
                                         <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full flex hover:bg-greyblue">
                                             <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                             <div className="w-[65%] xl:w-[80%] flex flex-col pl-2 justify-center">
@@ -520,7 +520,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                     <div className="w-full lg:text-xl xl:text-2xl font-semibold text-white mt-4">Album Hot</div>
                     <div className="w-full h-[40%] overflow-y-auto py-2 mb-2 border-b-[1px] border-white-200 playlistSong">
                         <div className="w-full">
-                            {home?.data?.data?.items[home?.data?.data?.items[10]?.title === "Album Hot" ? 9 : 10]?.items?.map((item) => (
+                            {home?.data?.data?.items[home?.data?.data?.items[9]?.title === "Album Hot" ? 9 : 10]?.items?.map((item) => (
                                 <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full flex hover:bg-greyblue">
                                     <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                     <div className="w-[65%] xl:w-[80%] flex flex-col pl-2 justify-center">
