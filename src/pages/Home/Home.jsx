@@ -139,7 +139,7 @@ const Home = ({ selectedId, setIsPlaying, setSelectedId }) => {
                     </div>
                     <div className="w-full h-1/3 py-4">
                         <Carousel>
-                            {home?.data?.data?.items[0]?.items?.map((item) =>
+                            {home?.data?.data?.items[home?.data?.data?.items[0]?.sectionType === "banner" ? 0 : 1]?.items?.map((item) =>
                                 item.type === 1 ? (
                                     <Link to={`/afuproject/music/track/${item.encodeId}`} className="w-full">
                                         <img
