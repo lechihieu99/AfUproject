@@ -1,17 +1,23 @@
-import axiosApi from "./Axios.api";
+import axiosApi, { headersData } from "./Axios.api";
 
 const favouriteListController = {
     getAll(tokenId) {
         const url = `/get-all-favourite/${tokenId}`;
-        return axiosApi.get(url)
+        return axiosApi.get(url, {
+            headers: {
+                ...headersData,
+                'Authorization': localStorage.getItem('accessToken')
+            }
+        })
     },
     addItem(songId) {
         const url = `/add-favourite-item`;
         const payload = { songId: songId };
         return axiosApi.post(url, payload, {
             headers: {
-                'Content-Type': 'application/json'
-            },
+                ...headersData,
+                'Authorization': localStorage.getItem('accessToken')
+            }
         })
     },
     removeItem(songId) {
@@ -19,8 +25,9 @@ const favouriteListController = {
         const payload = { id: songId };
         return axiosApi.post(url, payload, {
             headers: {
-                'Content-Type': 'application/json'
-            },
+                ...headersData,
+                'Authorization': localStorage.getItem('accessToken')
+            }
         })
     }
 }

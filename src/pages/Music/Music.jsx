@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { Heart, Play, Pause, Article, ArrowRight } from "@phosphor-icons/react";
 import Cookies from "js-cookie";
 import axiosApi from "../../redux/controller/Axios.api";
+import { protectedAccount } from "../../redux/slice/Auth.slice";
 const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selectedId, setSelectedId }) => {
 
     const dispatch = useDispatch()
@@ -38,9 +39,9 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
     const [arrayIdx, setArrayIdx] = useState([]);
     const [arrayIdx2, setArrayIdx2] = useState([]);
 
-    useEffect(() => {
-        console.log(home)
-    }, [home])
+    // useEffect(() => {
+    //     console.log(home)
+    // }, [home])
 
     useEffect(() => {
         dispatch(getHome())

@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import ModalLogin from "../../components/modalLogin/ModalLogin";
 import ModalSignIn from "../../components/modalSignUp/ModalSignUp";
 import { images } from "../../constants/GetImages";
-import { loginAccount, signinAccount } from "../../redux/slice/Auth.slice";
+import { loginAccount, loginAccountTest, signinAccount } from "../../redux/slice/Auth.slice";
 import { Link, useNavigate } from "react-router-dom";
 import { API_HOST } from "../../constants/Pathname";
 
@@ -108,6 +108,11 @@ const Login = ({ setSelectedId, setIsPlaying }) => {
                     password: password
                 }
                 dispatch(loginAccount(payload))
+                dispatch(loginAccountTest({
+                    name: name,
+                    email: email,
+                    password: password
+                }))
                 setShowLogin(true)
             }
             else {
@@ -134,6 +139,7 @@ const Login = ({ setSelectedId, setIsPlaying }) => {
                     password: password
                 }
                 dispatch(signinAccount(payload))
+
                 setShowSignIn(true);
             }
             else {

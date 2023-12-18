@@ -17,6 +17,18 @@ export const loginAccount = createAsyncThunk('loginAccount', async (data) => {
     }
 })
 
+export const loginAccountTest = createAsyncThunk('loginAccountTest', async (data) => {
+    const { name, email, password } = data;
+    try {
+        const login = await authController.loginTest(name, password);
+        return login;
+    }
+    catch (error) {
+        return error;
+    }
+})
+
+
 export const signinAccount = createAsyncThunk('signinAccount', async (data) => {
     const { name, email, password } = data;
     try {
@@ -40,11 +52,24 @@ export const authSlice = createSlice({
             // state.status = 'idle';
             action.payload.name === 'AxiosError' ? state.status = 'failed' : state.status = 'success';
             state.status === 'success' ? state.token = action.payload.data : state.token = undefined;
-            console.log(action.payload)
+            // console.log(action.payload)
             state.status === 'success' && Cookies.set('tokenId', action.payload.data, { expires: 1 })
         });
         builder.addCase(loginAccount.rejected, (state) => {
             state.status = 'failed';
+        })
+
+        builder.addCase(loginAccountTest.pending, (state) => {
+            state.statusToken = 'loading'
+        });
+        builder.addCase(loginAccountTest.fulfilled, (state, action) => {
+            // console.log(action.payload)
+            localStorage.setItem('accessToken', action.payload.data?.accessToken)
+            localStorage.setItem('refreshToken', action.payload.data?.refreshToken)
+            state.statusToken = 'success';
+        });
+        builder.addCase(loginAccountTest.rejected, (state) => {
+            state.statusToken = 'failed';
         })
 
         builder.addCase(signinAccount.pending, (state) => {
