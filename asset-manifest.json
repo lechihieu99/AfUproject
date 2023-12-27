@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/afuproject/static/css/main.fd2d8d49.css",
-    "main.js": "/afuproject/static/js/main.09461bcd.js",
+    "main.js": "/afuproject/static/js/main.f6726ba4.js",
     "static/js/720.86e3ee8f.chunk.js": "/afuproject/static/js/720.86e3ee8f.chunk.js",
     "static/js/89.1f41ad5a.chunk.js": "/afuproject/static/js/89.1f41ad5a.chunk.js",
     "static/js/787.25d88e57.chunk.js": "/afuproject/static/js/787.25d88e57.chunk.js",
@@ -17,7 +17,7 @@
     "static/media/logo.png": "/afuproject/static/media/logo.12854accd4eab18a3584.png",
     "index.html": "/afuproject/index.html",
     "main.fd2d8d49.css.map": "/afuproject/static/css/main.fd2d8d49.css.map",
-    "main.09461bcd.js.map": "/afuproject/static/js/main.09461bcd.js.map",
+    "main.f6726ba4.js.map": "/afuproject/static/js/main.f6726ba4.js.map",
     "720.86e3ee8f.chunk.js.map": "/afuproject/static/js/720.86e3ee8f.chunk.js.map",
     "89.1f41ad5a.chunk.js.map": "/afuproject/static/js/89.1f41ad5a.chunk.js.map",
     "787.25d88e57.chunk.js.map": "/afuproject/static/js/787.25d88e57.chunk.js.map",
@@ -25,6 +25,6 @@
   },
   "entrypoints": [
     "static/css/main.fd2d8d49.css",
-    "static/js/main.09461bcd.js"
+    "static/js/main.f6726ba4.js"
   ]
 }
