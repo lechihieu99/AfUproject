@@ -39,9 +39,9 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
     const [arrayIdx, setArrayIdx] = useState([]);
     const [arrayIdx2, setArrayIdx2] = useState([]);
 
-    // useEffect(() => {
-    //     console.log(home)
-    // }, [home])
+    useEffect(() => {
+        console.log(home)
+    }, [home])
 
     useEffect(() => {
         dispatch(getHome())
@@ -414,7 +414,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                             </div>
                         </div>
                         <div className="w-full h-full lg:hidden lg:bg-black-200 mb-4 rounded-sm mt-80">
-                            <div className="w-full rounded-sm bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
+                            {/* <div className="w-full rounded-sm bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
                                 <div className="px-4 py-8 w-full text-center">
                                     <h1 className="w-full xl:text-2xl lg:text-xl font-bold text-white ">Chill cùng AfU</h1>
                                     <p className="w-full px-8 py-4 text-xs lg:hidden xl:text-base 2xl:text-base flex justify-center items-center font-normal text-gray-400">Hãy cùng tận hưởng những playlist với hơi hướng thư giãn và làm dịu tâm hồn nào.</p>
@@ -429,7 +429,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
 
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                             <div className="w-full lg:text-xl xl:text-2xl font-semibold text-white mt-4">Playlist của bạn</div>
                             <div className="w-full py-2  h-10 flex gap-4 ">
                                 <Link to={`/afuproject/music/current/${token}`} className="h-full px-2 xl:px-4 rounded-sm flex justify-center items-center bg-blue-velvet text-gray-200 text-xs xl:text-sm py-2 gap-2">Gần đây <ArrowRight size={18} className="text-gray-200" /> </Link>
@@ -457,7 +457,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                             <div className="w-full lg:text-xl xl:text-2xl font-semibold text-white mt-4">Album Hot</div>
                             <div className="w-full h-72 sm:h-[40%] overflow-y-auto py-2 mb-2 border-b-[1px] border-white-200">
                                 <div className="w-full">
-                                    {home?.data?.data?.items[home?.data?.data?.items[9]?.title === "Album Hot" ? 9 : 10]?.items?.map((item) => (
+                                    {home?.data?.data?.items[home?.data?.data?.items[7]?.title === "Album Hot" ? 7 : 8]?.items?.map((item) => (
                                         <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full flex hover:bg-greyblue">
                                             <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                             <div className="w-[65%] xl:w-[80%] flex flex-col pl-2 justify-center">
@@ -478,7 +478,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
 
                 </div>
                 <div className="w-[30%] hidden lg:block h-full bg-black-200 pt-4 px-6 rounded-sm overflow-y-auto">
-                    <div className="w-full rounded-sm bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
+                    {/* <div className="w-full rounded-sm bg-center bg-no-repeat bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/conference.jpg')] bg-gray-700 bg-blend-multiply">
                         <div className="px-4 py-8 w-full text-center">
                             <h1 className="w-full 2xl:text-3xl xl:text-2xl lg:text-xl font-bold text-white ">Chill cùng AfU</h1>
                             <p className="w-full px-8 py-4 text-xs lg:hidden xl:text-base 2xl:text-base flex justify-center items-center font-normal text-gray-400">Hãy cùng tận hưởng những playlist với hơi hướng thư giãn và làm dịu tâm hồn nào.</p>
@@ -493,7 +493,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
 
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="w-full lg:text-xl xl:text-2xl font-semibold text-white mt-4">Playlist của bạn</div>
                     <div className="w-full py-2  h-10 flex gap-4 ">
                         <Link to={`/afuproject/music/current/${token}`} className="h-full px-2 xl:px-4 rounded-sm flex justify-center items-center bg-blue-velvet text-gray-200 text-xs xl:text-sm py-2 gap-2">Gần đây <ArrowRight size={18} className="text-gray-200" /> </Link>
@@ -521,7 +521,7 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
                     <div className="w-full lg:text-xl xl:text-2xl font-semibold text-white mt-4">Album Hot</div>
                     <div className="w-full h-[40%] overflow-y-auto py-2 mb-2 border-b-[1px] border-white-200 playlistSong">
                         <div className="w-full">
-                            {home?.data?.data?.items[home?.data?.data?.items[9]?.title === "Album Hot" ? 9 : 10]?.items?.map((item) => (
+                            {home?.data?.data?.items[home?.data?.data?.items[7]?.title === "Album Hot" ? 7 : 8]?.items?.map((item) => (
                                 <Link to={`/afuproject/music/playlist/${item.encodeId}`} className="w-full flex hover:bg-greyblue">
                                     <div className="w-12 h-12 m-2" style={{ backgroundImage: `url(${item.thumbnail})`, backgroundSize: 'cover' }}></div>
                                     <div className="w-[65%] xl:w-[80%] flex flex-col pl-2 justify-center">
