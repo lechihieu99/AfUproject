@@ -39,9 +39,9 @@ const MusicPage = ({ isPlaying, setIsPlaying, playingList, setPlayingList, selec
     const [arrayIdx, setArrayIdx] = useState([]);
     const [arrayIdx2, setArrayIdx2] = useState([]);
 
-    useEffect(() => {
-        console.log(home)
-    }, [home])
+    // useEffect(() => {
+    //     console.log(home)
+    // }, [home])
 
     useEffect(() => {
         dispatch(getHome())
