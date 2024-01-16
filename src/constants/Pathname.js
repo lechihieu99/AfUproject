@@ -1,3 +1,3 @@
-export const API_HOST = 'https://0452-14-169-3-129.ngrok-free.app/api';
-export const HOST = 'https://0452-14-169-3-129.ngrok-free.app/'
+export const API_HOST = 'https://8740-115-78-15-113.ngrok-free.app/api';
+export const HOST = 'https://8740-115-78-15-113.ngrok-free.app/'
 // export const API_HOST = 'http://10.0.249.109:3114/api';
